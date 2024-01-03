@@ -92,8 +92,8 @@ class Individual(models.Model):
     stayed_with_hh = models.IntegerField(choices=STAYED_WITH_HH_CHOICES, verbose_name="Stayed with the HH Last Week?", null=True, blank=True)
     not_stay_reason = models.IntegerField(choices=NOT_STAY_REASON_CHOICES, verbose_name="Reason for Not Staying in HH", null=True, blank=True)
 
-    def __str__(self):
-        return f"Individual {self.pid} from Household {self.hhid.id}"
+    # def __str__(self):
+    #     return f"Individual {self.pid.id} from Household {self.hhid.id}"
 
 
 # dta file hh1b.dta
@@ -163,7 +163,7 @@ class Education(models.Model):
     
     
     def __str__(self):
-        return f"Education Details for Individual {self.pid} from Household {self.hhid}"
+        return f"Education Details for Individual {self.pid.id} from Household {self.hhid}"
     
 
 # dta file hh1c.dta
@@ -222,7 +222,7 @@ class ChildHealth(models.Model):
     breastfeeding_duration = models.IntegerField(verbose_name="Breastfeeding Duration (months)", null=True, blank=True)
 
     def __str__(self):
-        return f"Child Health Record for Individual {self.pid} from Household {self.hhid}"
+        return f"Child Health Record for Individual {self.pid.id} from Household {self.hhid}"
 
 
 
@@ -273,7 +273,7 @@ class ChildHealthDetails(models.Model):
     height = models.IntegerField( verbose_name="Height in cm", null=True, blank=True)
 
     def __str__(self):
-        return f"Child Health Details for Individual {self.pid} from Household {self.hhid}"
+        return f"Child Health Details for Individual {self.pid.id} from Household {self.hhid}"
 
 
 
