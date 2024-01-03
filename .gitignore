@@ -2,6 +2,8 @@
 .env/
 .venv
 .venv/
+venv
+venv/
 
 *.old
 *.bak
