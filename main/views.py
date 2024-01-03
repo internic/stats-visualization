@@ -166,3 +166,44 @@ def home(request):
 def dashboard(request):
     context = {}
     return render(request, "dashboard.html", context)
+
+# Household Demographics Page
+def household_demographics(request):
+    household_instance = Household.objects.first()
+    context = {'household': household_instance}
+    return render(request, "pages/1 - household-demographics/household-demographics.html", context)
+
+# Economic Wellbeing Page
+def economic_wellbeing(request):
+    context = {}
+    return render(request, "pages/2 - economic-wellbeing/economic-wellbeing.html", context)
+
+# Housing and Amenities Page
+def housing_and_amenities(request):
+    context = {}
+    return render(request, "pages/3 - housing-and-amenities/housing-and-amenities.html", context)
+
+# Education and Employment Page
+def education_and_employment(request):
+    context = {}
+    return render(request, "pages/4 - education-employment/education-employment.html", context)
+
+# Health and Nutrition Page
+def health_and_nutrition(request):
+    context = {}
+    return render(request, "pages/5 - health-nutrition/health-nutrition.html", context)
+
+# Migration and Remittances Page
+def migration_and_remittances(request):
+    context = {}
+    return render(request, "pages/6 - migration-remittances/migration-remittances.html", context)
+
+# Shocks and Coping Mechanism Page
+def shocks_and_coping_mechanism(request):
+    context = {}
+    return render(request, "pages/7 - family-background/family-background.html", context)
+
+# Community Perception Page
+def community_perception(request):
+    context = {}
+    return render(request, "pages/8 - community-perceptions/community-perceptions.html", context)
