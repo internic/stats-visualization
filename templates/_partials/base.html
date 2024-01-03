@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Meta -->
+  <meta name="description" content="">
+  <meta name="author" content="internic">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.png">
+
+  <title>Statistics Visualization App</title>
+
+  <!-- Vendor CSS -->
+  <link rel="stylesheet" href="{% static 'css/remixicon/remixicon.css' %}">
+  <link rel="stylesheet" href="{% static 'css/cryptofont/cryptofont.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/jqvmap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/apexcharts.css' %}">
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+  {% block content %}
+
+  {% endblock %}
+
+    <!-- JS files -->
+    <script src="{% static 'js/jquery.min.js' %}" ></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}" ></script>
+    <script src="{% static 'js/perfect-scrollbar.min.js' %}" ></script>
+    <script src="{% static 'js/chart.min.js' %}" ></script>
+
+    <script src="{% static 'js/apexcharts.min.js' %}" ></script>
+  
+    <script src="{% static 'js/script.js' %}" ></script>
+    <script src="{% static 'js/db.data.js' %}" ></script>
+
+    <script src="{% static 'js/main.js' %}" ></script>
+</body>
+</html>

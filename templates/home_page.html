@@ -1,0 +1,71 @@
+{% extends '_partials/base.html' %} {% block content %}
+
+  <body class="sidebar-offset">
+
+
+    <div class="landing-headline">
+      <div class="landing-header px-4 px-sm-5">
+
+        <a href="" class="sidebar-logo">Dataset Analysis</a>
+        <nav class="nav nav-icon">
+          <a href="" class="nav-link"><i class="ri-twitter-line"></i></a>
+          <a href="" class="nav-link"><i class="ri-facebook-circle-line"></i></a>
+          <a href="" class="nav-link"><i class="ri-instagram-line"></i></a>
+          <a href="" class="nav-link"><i class="ri-youtube-line"></i></a>
+        </nav>
+      </div><!-- landing-header -->
+      <div class="landing-body d-flex flex-column-reverse flex-lg-row align-items-center p-4 px-sm-5 py-lg-0">
+        <div class="headline-text mt-5 mt-lg-0">
+          <label class="text-primary mb-2">Interactive Visualization and In-Depth Analysis at Your Fingertips</label>
+          <h1 class="text-dark mb-3 ff-secondary">A comprehensive Dataset Analysis Dashboard</h1>
+          <h4 class="fw-light lh-4 mb-4 lh-5">
+            This dashboard integrates various statistical visualizations, enabling users to effortlessly analyze and interpret complex data across multiple dimensions. It serves as an essential tool for data-driven decision making, catering to both professionals and enthusiasts in the field of data analysis.
+          </h4>
+          
+          
+          <form method="POST" action="{% url 'import_dataset' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+          <div class="d-flex gap-2">
+            <input class="uploadbutton form-control form-control-lg" id="formFileLg" name="file" type="file" accept=".dta" required>
+
+            <select name="row_limit" class="selectbutton form-select form-select-lg" aria-label=".form-select-lg example" required>
+              <option value="100">Load 100 rows</option>
+              <option value="all" selected>Load all rows</option>
+            </select>
+
+            <button id="process-dataset" type="submit" class="btn btn-lg btn-primary">Load Dataset</button>
+          </div>
+        </form>
+
+        {% include '_partials/messages.html'%}
+
+        </div>
+        <div class="headline-content">
+          <div class="img-item one"><img src="media/screen1.png" alt=""></div>
+          <div class="img-item two"><img src="media/screen2.png" alt=""></div>
+          <div class="img-item three"><img src="media/screen3.png" alt=""></div>
+        </div><!-- headline-content -->
+      </div><!-- landing-body -->
+    </div><!-- landing-headline -->
+
+
+    <script>
+      'use script'
+
+      $('#dropdownDemo .dropdown-item').on('click', function(e){
+        e.preventDefault();
+
+        $(this).addClass('active').siblings().removeClass('active');
+
+        var demo = $(this).text();
+        $(this).closest('.dropdown').find('.dropdown-link span').text(demo);
+
+        var loc = $(this).attr('data-location');
+
+        $('#viewDemo').attr('href', loc);
+
+      });
+    </script>
+  </body>
+
+  {% endblock content %}

@@ -1,0 +1,277 @@
+{% extends '_partials/base.html' %} {% block content %}
+
+<div class="sidebar">
+    <div class="sidebar-header">
+      <a href="#" class="sidebar-logo">LiK Dashboard</a>
+    </div><!-- sidebar-header -->
+    <div id="sidebarMenu" class="sidebar-body">
+      <div class="nav-group show">
+        <a href="#" class="nav-label">Household</a>
+        <ul class="nav nav-sidebar">
+          <li class="nav-item">
+            <a href="#household-demographics" class="nav-link"><i class="ri-home-3-line"></i> <span>Household Demographics</span></a>
+          </li>
+          <li class="nav-item">
+            <a href="#economic-wellbeing" class="nav-link"><i class="ri-wallet-3-line"></i> <span>Economic Well-Being</span></a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#housing-amenities" class="nav-link"><i class="ri-coin-line"></i> <span>Housing and Amenities</span></a>
+          </li>
+          <li class="nav-item">
+            <a href="#education-employment" class="nav-link"><i class="ri-git-repository-line"></i> <span>Education and Employment</span></a>
+          </li>
+          <li class="nav-item">
+            <a href="#health-nutrition" class="nav-link"><i class="ri-service-line"></i> <span>Health and Nutrition</span></a>
+          </li>
+          <li class="nav-item">
+            <a href="#migration-remittances" class="nav-link"><i class="ri-bar-chart-2-line"></i> <span>Migration and Remittances</span></a>
+          </li>
+          <li class="nav-item">
+            <a href="#family-background" class="nav-link"><i class="ri-settings-line"></i> <span>Shocks and Coping Mechanisms</span></a>
+          </li>
+          <li class="nav-item">
+            <a href="#community-perceptions" class="nav-link"><i class="ri-team-line"></i> <span>Community Perceptions</span></a>
+          </li>
+
+        </ul>
+      </div><!-- nav-group -->
+
+
+    </div><!-- sidebar-body -->
+
+
+
+  </div><!-- sidebar -->
+
+  <div class="header-main px-3 px-lg-4">
+    <a id="menuSidebar" href="#" class="menu-link me-3 me-lg-4"><i class="ri-menu-2-fill"></i></a>
+
+    <div class="form-search me-auto">
+      <input type="text" class="form-control" placeholder="Search">
+      <i class="ri-search-line"></i>
+    </div><!-- form-search -->
+
+    <div class="dropdown dropdown-skin">
+      <a href="" class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="ri-settings-3-line"></i></a>
+      <div class="dropdown-menu dropdown-menu-end mt-10-f">
+        <label>Skin Mode</label>
+        <nav id="skinMode" class="nav nav-skin">
+          <a href="" class="nav-link active">Light</a>
+          <a href="" class="nav-link">Dark</a>
+        </nav>
+      </div><!-- dropdown-menu -->
+    </div><!-- dropdown -->
+
+    <div class="dropdown dropdown-profile ms-3 ms-xl-4">
+        <a href="" class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><small>3</small><i class="ri-question-line"></i></a>
+        
+        <div class="dropdown-menu dropdown-menu-end mt-10-f">
+          <div class="dropdown-menu-body">
+
+            <nav class="nav">
+              <a href=""><i class="ri-mail-open-line"></i> Contact Us</a>
+              <a href=""><i class="ri-lock-line"></i> Privacy Settings</a>
+              <form action="#" method="post">
+                {% csrf_token %}
+              <button class="unloaddata btn btn-link" type="submit"><i class="ri-logout-box-r-line"></i> Unload Data</button>
+              </form>
+            </nav>
+
+          </div><!-- dropdown-menu-body -->
+        </div><!-- dropdown-menu -->
+    
+      </div><!-- dropdown -->
+  </div><!-- header-main -->
+
+  <div class="main main-app p-3 p-lg-4">
+
+    <div class="d-md-flex align-items-center justify-content-between mb-4">
+      <div>
+        <ol class="breadcrumb fs-sm mb-1">
+          <li class="breadcrumb-item"><a href="#">Dataset</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Life in Kyrgyzstan Household Database</li>
+        </ol>
+        <h4 id="household-demographics" class="main-title mb-0">Household Demographics</h4>
+      </div>
+      <div class="d-flex gap-2 mt-3 mt-md-0">
+        <button type="button" class="btn btn-white d-flex align-items-center gap-2"><i class="ri-share-line fs-18 lh-1"></i>Share</button>
+        <button type="button" class="btn btn-white d-flex align-items-center gap-2"><i class="ri-printer-line fs-18 lh-1"></i>Print</button>
+        <button type="button" class="btn btn-primary d-flex align-items-center gap-2"><i class="ri-bar-chart-2-line fs-18 lh-1"></i>Generate<span class="d-none d-sm-inline"> Report</span></button>
+      </div>
+    </div>
+
+    <div class="row g-3">
+
+
+
+      <div class="col-sm-6 col-xl-3">
+        <div class="card card-one">
+          <div class="card-body overflow-hidden px-0">
+            <div class="crypto-item">
+              <div class="avatar bg-orange"><i class="ri-calculator-fill"></i></div>
+              <div class="crypto-body">
+                <label class="card-label">Math Score <span>(Avg)</span></label>
+                <h6 class="card-value">34</h6>
+              </div><!-- crypto-body -->
+            </div><!-- crypto-item -->
+            <div id="apexChart1" class="apex-chart-ten"></div>
+          </div><!-- card-body -->
+          <div class="card-footer card-footer-crypto pt-0">
+            <div>Min <strong>56</strong></div>
+            <div>Max <strong>78</strong></div>
+          </div><!-- card-footer -->
+        </div><!-- card -->
+      </div><!-- col -->
+      <div class="col-sm-6 col-xl-3">
+        <div class="card card-one">
+          <div class="card-body overflow-hidden px-0">
+            <div class="crypto-item">
+              <div class="avatar bg-twitter"><i class="ri-book-2-fill"></i></div>
+              <div class="crypto-body">
+                <label class="card-label">Reading Score <span>(Avg)</span></label>
+                <h6 class="card-value">67</h6>
+              </div><!-- crypto-body -->
+            </div><!-- crypto-item -->
+            <div id="apexChart2" class="apex-chart-ten"></div>
+          </div><!-- card-body -->
+          <div class="card-footer card-footer-crypto pt-0">
+            <div>Min <strong>00</strong></div>
+            <div>Max <strong>00</strong></div>
+          </div><!-- card-footer -->
+        </div><!-- card -->
+      </div><!-- col -->
+      <div class="col-sm-6 col-xl-3">
+        <div class="card card-one">
+          <div class="card-body overflow-hidden px-0">
+            <div class="crypto-item">
+              <div class="avatar bg-success"><i class="ri-edit-fill"></i></div>
+              <div class="crypto-body">
+                <label class="card-label">Writing Score <span>(Avg)</span></label>
+                <h6 class="card-value">00</h6>
+              </div><!-- crypto-body -->
+            </div><!-- crypto-item -->
+            <div id="apexChart3" class="apex-chart-ten"></div>
+          </div><!-- card-body -->
+          <div class="card-footer card-footer-crypto pt-0">
+            <div>Min <strong>00</strong></div>
+            <div>Max <strong>00</strong></div>
+          </div><!-- card-footer -->
+        </div><!-- card -->
+      </div><!-- col -->
+      <div class="col-sm-6 col-xl-3">
+        <div class="card card-one">
+          <div class="card-body overflow-hidden px-0">
+            <div class="crypto-item">
+              <div class="avatar bg-primary"><i class="ri-add-box-fill"></i></div>
+              <div class="crypto-body">
+                <label class="card-label">Total Average </label>
+                <h6 class="card-value">00</h6>
+              </div><!-- crypto-body -->
+            </div><!-- crypto-item -->
+            <div id="apexChart4" class="apex-chart-ten"></div>
+          </div><!-- card-body -->
+          <div class="card-footer card-footer-crypto pt-0">
+            <div>Lowest Score <strong>00</strong></div>
+            <div>Highest Score <strong>00</strong></div>
+          </div><!-- card-footer -->
+        </div><!-- card -->
+      </div><!-- col -->
+      <div class="col-xl-8">
+        <div class="card card-one">
+          <div class="card-header">
+            <h6 class="card-title">Scores Distribution</h6>
+            <nav class="nav nav-icon nav-icon-sm ms-auto">
+              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+            </nav>
+          </div><!-- card-header -->
+          <div class="card-body">
+            <!-- Grades combined bar chart -->
+            <div id="scoresBarChart" class="apex-chart-nine mb-4"></div>
+            <div class="row row-cols-auto gy-3 gx-5">
+              <div class="col">
+                <label class="fs-xs mb-1 text-secondary">Students</label>
+                <h4 class="ff-numerals text-dark mb-0">00</h4>
+              </div><!-- col -->
+              <div class="col">
+                <label class="fs-xs mb-1 text-secondary">Avg Grade</label>
+                <h4 class="ff-numerals text-dark mb-0">00</h4>
+              </div><!-- col -->
+              <div class="col">
+                <label class="fs-xs mb-1 text-secondary">Highest Grade</label>
+                <h4 class="ff-numerals text-dark mb-0">00</h4>
+              </div><!-- col -->
+              <div class="col">
+                <label class="fs-xs mb-1 text-secondary">Lowest Grade</label>
+                <h4 class="ff-numerals text-dark mb-0">00</h4>
+              </div><!-- col -->
+
+            </div><!-- row -->
+          </div><!-- card-body -->
+        </div><!-- card -->
+      </div><!-- col -->
+      <div class="col-sm-6 col-xl-4">
+        
+        <div class="card card-one">
+          <div class="card-header">
+            <h6 class="card-title">Scores detalization</h6>
+            <nav class="nav nav-icon nav-icon-sm ms-auto">
+              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+            </nav>
+          </div><!-- card-header -->
+          <div class="card-body p-3">
+
+            <!-- Tabs for each subject -->
+            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="math-tab" data-bs-toggle="tab" data-bs-target="#math" type="button" role="tab" aria-controls="math" aria-selected="true">Math</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="reading-tab" data-bs-toggle="tab" data-bs-target="#reading" type="button" role="tab" aria-controls="reading" aria-selected="false">Reading</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="writing-tab" data-bs-toggle="tab" data-bs-target="#writing" type="button" role="tab" aria-controls="writing" aria-selected="false">Writing</button>
+              </li>
+            </ul>
+            
+            
+
+
+
+
+
+
+
+
+          </div><!-- card-body -->
+        </div><!-- card-one -->
+
+
+      </div><!-- col -->
+
+      <div class="d-md-flex align-items-center justify-content-between mt-5 mb-4">
+        <div>
+          <h4 id="economic-wellbeing" class="main-title mb-0">Economic Well-Being</h4>
+        </div>
+
+      </div>
+
+      
+
+
+ 
+
+
+
+    </div><!-- col -->
+
+    <div class="main-footer mt-5">
+      <span>&copy; 2023. Dataset Analytics App. All Rights Reserved.</span>
+      <span>CROCUS</span>
+    </div><!-- main-footer -->
+  </div><!-- main -->
+
+
+{% endblock content %}
