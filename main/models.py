@@ -93,7 +93,7 @@ class Individual(models.Model):
     not_stay_reason = models.IntegerField(choices=NOT_STAY_REASON_CHOICES, verbose_name="Reason for Not Staying in HH", null=True, blank=True)
 
     def __str__(self):
-        return f"Individual {self.pid} from Household {self.hhid.id}"
+        return f"Individual {self.pid.id} from Household {self.hhid.id}"
 
 
 # dta file hh1b.dta
@@ -163,7 +163,7 @@ class Education(models.Model):
     
     
     def __str__(self):
-        return f"Education Details for Individual {self.pid} from Household {self.hhid}"
+        return f"Education Details for Individual {self.pid.id} from Household {self.hhid}"
     
 
 # dta file hh1c.dta
@@ -222,7 +222,7 @@ class ChildHealth(models.Model):
     breastfeeding_duration = models.IntegerField(verbose_name="Breastfeeding Duration (months)", null=True, blank=True)
 
     def __str__(self):
-        return f"Child Health Record for Individual {self.pid} from Household {self.hhid}"
+        return f"Child Health Record for Individual {self.pid.id} from Household {self.hhid}"
 
 
 
@@ -253,8 +253,6 @@ class ChildHealthDetails(models.Model):
         (99, "Don't know"),
     ]
     
-    
-    
     hhid = models.ForeignKey(Household, on_delete=models.CASCADE, verbose_name="Household ID")
     pid = models.ForeignKey(Individual, on_delete=models.CASCADE, verbose_name="Individual Code")
     medical_card = models.IntegerField(choices=YES_NO_CHOICES, verbose_name="Has Medical Card for Vaccinations", null=True, blank=True)
@@ -273,9 +271,7 @@ class ChildHealthDetails(models.Model):
     height = models.IntegerField( verbose_name="Height in cm", null=True, blank=True)
 
     def __str__(self):
-        return f"Child Health Details for Individual {self.pid} from Household {self.hhid}"
-
-
+        return f"Child Health Details for Individual {self.pid.id} from Household {self.hhid}"
 
 
 # dta file hh2a.dta
