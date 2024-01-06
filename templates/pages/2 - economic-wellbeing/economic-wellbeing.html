@@ -148,6 +148,8 @@
         </div><!-- card -->
     </div><!-- col -->
 
+    
+
     <div class="col-xl-6">
       <div class="card card-one">
         <div class="card-header border-0 pb-2">
@@ -183,6 +185,67 @@
         </div><!-- card-body -->
       </div><!-- card -->
     </div><!-- col -->
+
+
+      <div class="card card-one">
+          <div class="card-header border-0 pb-2">
+              <h6 class="card-title">Electricity Disruption</h6>
+              <nav class="nav nav-icon nav-icon-sm ms-auto">
+                  <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+                  <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+              </nav>
+          </div><!-- card-header -->
+          <div class="card-body pt-0">
+              <p class="fs-sm text-secondary mb-4">Frequency of electricity disruption experienced by residents.</p>
+  
+              <div class="progress progress-finance mb-4">
+                <div class="progress-bar" role="progressbar" style="width: {{ never_percentage }}%;" aria-valuenow="{{ never_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ never_percentage }}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ several_times_a_year_percentage }}%;" aria-valuenow="{{ several_times_a_year_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ several_times_a_year_percentage }}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ once_a_month_percentage }}%;" aria-valuenow="{{ once_a_month_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ once_a_month_percentage }}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ once_a_week_percentage }}%;" aria-valuenow="{{ once_a_week_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ once_a_week_percentage }}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ several_times_a_week_percentage }}%;" aria-valuenow="{{ several_times_a_week_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ several_times_a_week_percentage }}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ everyday_percentage }}%;" aria-valuenow="{{ everyday_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ everyday_percentage }}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ no_power_supply_percentage }}%;" aria-valuenow="{{ no_power_supply_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ no_power_supply_percentage }}%</div>
+              </div>
+            
+            
+            
+  
+              <div class="row g-3">
+                  <div class="col">
+                      <label class="card-label fs-sm fw-medium mb-1">Never</label>
+                      <h2 class="card-value mb-0">{{ never_percentage }}%</h2>
+                  </div><!-- col -->
+                  <div class="col">
+                      <label class="card-label fs-sm fw-medium mb-1">Several times a year</label>
+                      <h2 class="card-value mb-0">{{ several_times_a_year_percentage }}%</h2>
+                  </div><!-- col -->
+                  <div class="col">
+                      <label class="card-label fs-sm fw-medium mb-1">Once a month</label>
+                      <h2 class="card-value mb-0">{{ once_a_month_percentage }}%</h2>
+                  </div><!-- col -->
+                  <div class="col">
+                      <label class="card-label fs-sm fw-medium mb-1">Once a week</label>
+                      <h2 class="card-value mb-0">{{ once_a_week_percentage }}%</h2>
+                  </div><!-- col -->
+                  <div class="col">
+                      <label class="card-label fs-sm fw-medium mb-1">Several times a week</label>
+                      <h2 class="card-value mb-0">{{ several_times_a_week_percentage }}%</h2>
+                  </div><!-- col -->
+                  <div class="col">
+                    <label class="card-label fs-sm fw-medium mb-1">Everyday</label>
+                    <h2 class="card-value mb-0">{{ everyday_percentage }}%</h2>
+                </div><!-- col -->
+                <div class="col">
+                  <label class="card-label fs-sm fw-medium mb-1">No power supply at all</label>
+                  <h2 class="card-value mb-0">{{ no_power_supply_percentage }}%</h2>
+                </div><!-- col -->
+                    
+              </div><!-- row -->
+          </div><!-- card-body -->
+      </div><!-- card -->
+
+  
     
 
 

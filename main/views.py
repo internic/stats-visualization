@@ -213,6 +213,38 @@ def economic_wellbeing(request):
     context['very_poor_percentage'] = round(very_poor_percentage, 2)
 
     context['overall_score'] = round(overall_score, 2)
+    
+    # ##############################################################################################################
+    
+     # Query the database to get the count for each electricity disruption option
+    never_count = HouseholdProperty.objects.filter(electricity_disruption=1).count()
+    several_times_a_year_count = HouseholdProperty.objects.filter(electricity_disruption=2).count()
+    once_a_month_count = HouseholdProperty.objects.filter(electricity_disruption=3).count()
+    once_a_week_count = HouseholdProperty.objects.filter(electricity_disruption=4).count()
+    several_times_a_week_count = HouseholdProperty.objects.filter(electricity_disruption=5).count()
+    everyday_count = HouseholdProperty.objects.filter(electricity_disruption=6).count()
+    no_power_supply_count = HouseholdProperty.objects.filter(electricity_disruption=7).count()
+
+    # Calculate the total count
+    total_count = never_count + several_times_a_year_count + once_a_month_count + once_a_week_count + several_times_a_week_count + everyday_count + no_power_supply_count
+
+    # Calculate the percentage for each option
+    never_percentage = (never_count / total_count) * 100 if total_count > 0 else 0
+    several_times_a_year_percentage = (several_times_a_year_count / total_count) * 100 if total_count > 0 else 0
+    once_a_month_percentage = (once_a_month_count / total_count) * 100 if total_count > 0 else 0
+    once_a_week_percentage = (once_a_week_count / total_count) * 100 if total_count > 0 else 0
+    several_times_a_week_percentage = (several_times_a_week_count / total_count) * 100 if total_count > 0 else 0
+    everyday_percentage = (everyday_count / total_count) * 100 if total_count > 0 else 0
+    no_power_supply_percentage = (no_power_supply_count / total_count) * 100 if total_count > 0 else 0
+
+    # Pass the data to the template
+    context['never_percentage'] = round(never_percentage, 2)
+    context['several_times_a_year_percentage'] = round(several_times_a_year_percentage, 2)
+    context['once_a_month_percentage'] = round(once_a_month_percentage, 2)
+    context['once_a_week_percentage'] = round(once_a_week_percentage, 2)
+    context['several_times_a_week_percentage'] = round(several_times_a_week_percentage, 2)
+    context['everyday_percentage'] = round(everyday_percentage, 2)
+    context['no_power_supply_percentage'] = round(no_power_supply_percentage, 2)
 
     return render(request, "pages/2 - economic-wellbeing/economic-wellbeing.html", context)
 
