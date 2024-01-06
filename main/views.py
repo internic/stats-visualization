@@ -199,10 +199,6 @@ def economic_wellbeing(request):
     overall_score = (excellent_count * 5 + mostly_good_count * 4 + sometimes_good_count * 3 + poor_count * 2 + very_poor_count * 1) / total_count if total_count > 0 else 0
 
 
-   
-    
-    
-
     # Pass the data to the template
     context['excellent_count'] = excellent_count
     context['mostly_good_count'] = mostly_good_count
