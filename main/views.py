@@ -174,8 +174,50 @@ def household_demographics(request):
     return render(request, "pages/1 - household-demographics/household-demographics.html", context)
 
 # Economic Wellbeing Page
+
 def economic_wellbeing(request):
     context = {}
+
+    # Query the database to get the count for each water quality option
+    excellent_count = HouseholdProperty.objects.filter(water_quality=1).count()
+    mostly_good_count = HouseholdProperty.objects.filter(water_quality=2).count()
+    sometimes_good_count = HouseholdProperty.objects.filter(water_quality=3).count()
+    poor_count = HouseholdProperty.objects.filter(water_quality=4).count()
+    very_poor_count = HouseholdProperty.objects.filter(water_quality=5).count()
+
+    # Calculate the total count
+    total_count = excellent_count + mostly_good_count + sometimes_good_count + poor_count + very_poor_count
+
+    # Calculate the percentage for each option
+    excellent_percentage = (excellent_count / total_count) * 100 if total_count > 0 else 0
+    mostly_good_percentage = (mostly_good_count / total_count) * 100 if total_count > 0 else 0
+    sometimes_good_percentage = (sometimes_good_count / total_count) * 100 if total_count > 0 else 0
+    poor_percentage = (poor_count / total_count) * 100 if total_count > 0 else 0
+    very_poor_percentage = (very_poor_count / total_count) * 100 if total_count > 0 else 0
+
+    # Calculate the overall score out of 10
+    overall_score = (excellent_count * 5 + mostly_good_count * 4 + sometimes_good_count * 3 + poor_count * 2 + very_poor_count * 1) / total_count if total_count > 0 else 0
+
+
+   
+    
+    
+
+    # Pass the data to the template
+    context['excellent_count'] = excellent_count
+    context['mostly_good_count'] = mostly_good_count
+    context['sometimes_good_count'] = sometimes_good_count
+    context['poor_count'] = poor_count
+    context['very_poor_count'] = very_poor_count
+
+    context['excellent_percentage'] = round(excellent_percentage, 2)
+    context['mostly_good_percentage'] = round(mostly_good_percentage, 2)
+    context['sometimes_good_percentage'] = round(sometimes_good_percentage, 2)
+    context['poor_percentage'] = round(poor_percentage, 2)
+    context['very_poor_percentage'] = round(very_poor_percentage, 2)
+
+    context['overall_score'] = round(overall_score, 2)
+
     return render(request, "pages/2 - economic-wellbeing/economic-wellbeing.html", context)
 
 # Housing and Amenities Page
