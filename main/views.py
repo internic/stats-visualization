@@ -82,17 +82,17 @@ def import_dataset(request):
 
 
 # Homepage
-def home(request):
-    context = {}
-    #return render(request, "home_page.html", context)
-    # Temporary redirect to dashboard
-    return render(request, "dashboard.html", context)
+# def home(request):
+#     context = {}
+#     #return render(request, "home_page.html", context)
+#     # Temporary redirect to dashboard
+#     return render(request, "dashboard.html", context)
 
 
 # Dashboard
-def dashboard(request):
-    context = {}
-    return render(request, "dashboard.html", context)
+# def dashboard(request):
+#     context = {}
+#     return render(request, "dashboard.html", context)
 
 # Dashboard Household Demographics Page
 # def household_demographics(request):
