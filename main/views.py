@@ -166,3 +166,223 @@ def home(request):
 def dashboard(request):
     context = {}
     return render(request, "dashboard.html", context)
+
+# Household Demographics Page
+def household_demographics(request):
+    household_instance = Household.objects.first()
+    context = {'household': household_instance}
+    return render(request, "pages/1 - household-demographics/household-demographics.html", context)
+
+# Economic Wellbeing Page
+
+def savingsAssets(request):
+    context = {}
+
+    # Query the database to get the count for each water quality option
+    excellent_count = HouseholdProperty.objects.filter(water_quality=1).count()
+    mostly_good_count = HouseholdProperty.objects.filter(water_quality=2).count()
+    sometimes_good_count = HouseholdProperty.objects.filter(water_quality=3).count()
+    poor_count = HouseholdProperty.objects.filter(water_quality=4).count()
+    very_poor_count = HouseholdProperty.objects.filter(water_quality=5).count()
+    empty_cells_count = HouseholdProperty.objects.filter(water_quality__isnull=True).count()
+
+    # Calculate the total count
+    total_count = excellent_count + mostly_good_count + sometimes_good_count + poor_count + very_poor_count + empty_cells_count
+
+    # Calculate the percentage for each option
+    excellent_percentage = (excellent_count / total_count) * 100 if total_count > 0 else 0
+    mostly_good_percentage = (mostly_good_count / total_count) * 100 if total_count > 0 else 0
+    sometimes_good_percentage = (sometimes_good_count / total_count) * 100 if total_count > 0 else 0
+    poor_percentage = (poor_count / total_count) * 100 if total_count > 0 else 0
+    very_poor_percentage = (very_poor_count / total_count) * 100 if total_count > 0 else 0
+    empty_cells_percentage = (empty_cells_count / total_count) * 100 if total_count > 0 else 0
+
+    # Calculate the overall score out of 10 including empty cells
+    # overall_score = (excellent_count * 5 + mostly_good_count * 4 + sometimes_good_count * 3 + poor_count * 2 + very_poor_count * 1) / total_count if total_count > 0 else 0
+    overall_score = (excellent_count * 5 + mostly_good_count * 4 + sometimes_good_count * 3 + poor_count * 2 + very_poor_count * 1) / (total_count - empty_cells_count) if total_count > 0 else 0
+
+
+    # Pass the data to the template
+    context['excellent_count'] = excellent_count
+    context['mostly_good_count'] = mostly_good_count
+    context['sometimes_good_count'] = sometimes_good_count
+    context['poor_count'] = poor_count
+    context['very_poor_count'] = very_poor_count
+    context['empty_cells_count'] = empty_cells_count
+
+    context['excellent_percentage'] = round(excellent_percentage, 2)
+    context['mostly_good_percentage'] = round(mostly_good_percentage, 2)
+    context['sometimes_good_percentage'] = round(sometimes_good_percentage, 2)
+    context['poor_percentage'] = round(poor_percentage, 2)
+    context['very_poor_percentage'] = round(very_poor_percentage, 2)
+    context['empty_cells_percentage'] = round(empty_cells_percentage, 2)
+
+    context['overall_score'] = round(overall_score, 2)
+    
+    # ###################################### ELECTRICITY DISRUPTION CALCULATION   ########################################################################
+    
+     # Query the database to get the count for each electricity disruption option
+    never_count = HouseholdProperty.objects.filter(electricity_disruption=1).count()
+    several_times_a_year_count = HouseholdProperty.objects.filter(electricity_disruption=2).count()
+    once_a_month_count = HouseholdProperty.objects.filter(electricity_disruption=3).count()
+    once_a_week_count = HouseholdProperty.objects.filter(electricity_disruption=4).count()
+    several_times_a_week_count = HouseholdProperty.objects.filter(electricity_disruption=5).count()
+    everyday_count = HouseholdProperty.objects.filter(electricity_disruption=6).count()
+    no_power_supply_count = HouseholdProperty.objects.filter(electricity_disruption=7).count()
+
+    # Calculate the total count
+    total_count = never_count + several_times_a_year_count + once_a_month_count + once_a_week_count + several_times_a_week_count + everyday_count + no_power_supply_count
+
+    # Calculate the percentage for each option
+    never_percentage = (never_count / total_count) * 100 if total_count > 0 else 0
+    several_times_a_year_percentage = (several_times_a_year_count / total_count) * 100 if total_count > 0 else 0
+    once_a_month_percentage = (once_a_month_count / total_count) * 100 if total_count > 0 else 0
+    once_a_week_percentage = (once_a_week_count / total_count) * 100 if total_count > 0 else 0
+    several_times_a_week_percentage = (several_times_a_week_count / total_count) * 100 if total_count > 0 else 0
+    everyday_percentage = (everyday_count / total_count) * 100 if total_count > 0 else 0
+    no_power_supply_percentage = (no_power_supply_count / total_count) * 100 if total_count > 0 else 0
+
+    # Pass the data to the template
+    context['never_percentage'] = round(never_percentage, 2)
+    context['several_times_a_year_percentage'] = round(several_times_a_year_percentage, 2)
+    context['once_a_month_percentage'] = round(once_a_month_percentage, 2)
+    context['once_a_week_percentage'] = round(once_a_week_percentage, 2)
+    context['several_times_a_week_percentage'] = round(several_times_a_week_percentage, 2)
+    context['everyday_percentage'] = round(everyday_percentage, 2)
+    context['no_power_supply_percentage'] = round(no_power_supply_percentage, 2)
+    
+    ########################### HOUSING TYPE CALCULATION ###########################################################
+    
+    
+    # Calculate the number of people with different housing types
+    total_households = HouseholdProperty.objects.count()
+    separate_apartment_count = HouseholdProperty.objects.filter(housing_type=1).count()
+    separate_house_count = HouseholdProperty.objects.filter(housing_type=2).count()
+    other_dwelling_count = HouseholdProperty.objects.filter(housing_type=3).count()
+
+    # Calculate the number of empty cells
+    empty_cells_count = HouseholdProperty.objects.filter(housing_type__isnull=True).count()
+
+    # Calculate percentages
+    separate_apartment_percentage = (separate_apartment_count / total_households) * 100
+    separate_house_percentage = (separate_house_count / total_households) * 100
+    other_dwelling_percentage = (other_dwelling_count / total_households) * 100
+    empty_cells_percentage = (empty_cells_count / total_households) * 100
+
+    context['total_households'] = total_households
+    context['separate_apartment_count'] = separate_apartment_count
+    context['separate_apartment_percentage'] = round(separate_apartment_percentage, 2)
+
+    context['separate_house_count'] = separate_house_count
+    context['separate_house_percentage'] = round(separate_house_percentage, 2)
+
+    context['other_dwelling_count'] = other_dwelling_count
+    context['other_dwelling_percentage'] = round(other_dwelling_percentage, 2)
+
+    context['empty_cells_count'] = empty_cells_count
+    context['empty_cells_percentage'] = round(empty_cells_percentage, 2)
+    
+    ########################### HOUSEHOLD rooms CALCULATION ###########################################################
+    # Retrieve data from the HouseholdProperty model
+    properties = HouseholdProperty.objects.all()
+    
+    # Calculate average area
+    total_area_sum = sum(property.total_area or 0 for property in properties)
+    total_properties = len(properties)
+    average_area = total_area_sum / total_properties if total_properties > 0 else 0
+    
+
+    # Pass the data to the template
+    context['average_area'] = round(average_area, 2)
+   
+   ########################### HOUSEHOLD SETTLEMENT YEAR CALCULATION ###########################################################
+   
+    # Calculate counts for each category
+    before_1990_count = HouseholdProperty.objects.filter(settlement_year__lt=1990).count()
+    between_1990_2000_count = HouseholdProperty.objects.filter(settlement_year__range=[1990, 2000]).count()
+    between_2000_2010_count = HouseholdProperty.objects.filter(settlement_year__range=[2000, 2010]).count()
+    after_2010_count = HouseholdProperty.objects.filter(settlement_year__gte=2010).count()
+
+    # Calculate the total count
+    total_count = before_1990_count + between_1990_2000_count + between_2000_2010_count + after_2010_count + empty_cells_count
+    
+    # Calculate the empty cells count
+    empty_cells_count = HouseholdProperty.objects.filter(settlement_year__isnull=True).count()
+    
+    
+    # Calculate the percentage for each category
+    before_1990_percentage = (before_1990_count / total_count) * 100 if total_count > 0 else 0
+    between_1990_2000_percentage = (between_1990_2000_count / total_count) * 100 if total_count > 0 else 0
+    between_2000_2010_percentage = (between_2000_2010_count / total_count) * 100 if total_count > 0 else 0
+    after_2010_percentage = (after_2010_count / total_count) * 100 if total_count > 0 else 0
+    empty_cells_percentage = (empty_cells_count / total_count) * 100 if total_count > 0 else 0
+    
+    
+    # Pass the data to the template
+    context['total_count'] = total_count
+    
+    context['before_1990_count'] = before_1990_count
+    context['between_1990_2000_count'] = between_1990_2000_count
+    context['between_2000_2010_count'] = between_2000_2010_count
+    context['after_2010_count'] = after_2010_count
+    context['empty_cells_count'] = empty_cells_count
+    
+    context['before_1990_percentage'] = round(before_1990_percentage, 2)
+    context['between_1990_2000_percentage'] = round(between_1990_2000_percentage, 2)
+    context['between_2000_2010_percentage'] = round(between_2000_2010_percentage, 2)
+    context['after_2010_percentage'] = round(after_2010_percentage, 2)
+    context['empty_cells_percentage'] = round(empty_cells_percentage, 2)
+    
+    
+    ########################### AVERAGE DISTANCE TO HOSPITAL ###########################################################
+    
+    # Calculate average distance to hospital
+    total_distance_sum_to_hospital = sum(property.distance_to_hospital or 0 for property in properties)
+    total_properties_hospital = len(properties)
+    average_distance_to_hospital = total_distance_sum_to_hospital / total_properties_hospital if total_properties > 0 else 0
+    
+    # Pass the data to the template
+    context['average_distance_to_hospital'] = round(average_distance_to_hospital, 2)
+    
+    ########################### AVERAGE DISTANCE TO SCHOOL ###########################################################
+    
+    # Calculate average distance to school
+    total_distance_sum_to_school = sum(property.distance_to_school or 0 for property in properties)
+    total_properties_school = len(properties)
+    average_distance_to_school = total_distance_sum_to_school / total_properties_school if total_properties > 0 else 0
+    
+    # Pass the data to the template
+    context['average_distance_to_school'] = round(average_distance_to_school, 2)
+    
+
+    return render(request, "pages/2 - Savings, Assetts and Savings/SavingsAssettsSavings.html", context)
+
+# Housing and Amenities Page
+def housing_and_amenities(request):
+    context = {}
+    return render(request, "pages/3 - housing-and-amenities/housing-and-amenities.html", context)
+
+# Education and Employment Page
+def education_and_employment(request):
+    context = {}
+    return render(request, "pages/4 - education-employment/education-employment.html", context)
+
+# Health and Nutrition Page
+def health_and_nutrition(request):
+    context = {}
+    return render(request, "pages/5 - health-nutrition/health-nutrition.html", context)
+
+# Migration and Remittances Page
+def migration_and_remittances(request):
+    context = {}
+    return render(request, "pages/6 - migration-remittances/migration-remittances.html", context)
+
+# Shocks and Coping Mechanism Page
+def shocks_and_coping_mechanism(request):
+    context = {}
+    return render(request, "pages/7 - family-background/family-background.html", context)
+
+# Community Perception Page
+def community_perception(request):
+    context = {}
+    return render(request, "pages/8 - community-perceptions/community-perceptions.html", context)

@@ -1,0 +1,307 @@
+{% extends '_partials/base.html' %} {% block content %}
+
+  {% include "_partials/sidebar.html" %}
+
+  {% include "_partials/header.html" %}
+
+  <div class="main main-app p-3 p-lg-4">
+
+    {% include "_partials/subheader.html" %}
+    
+
+    <div class="row g-3">
+      <div class="col-6 col-xl-3">
+        <div class="card card-one">
+          <div class="card-body">
+            <label class="card-title fs-sm fw-medium mb-1">Separate Apartments</label>
+            <h3 class="card-value mb-1"><i class="ri-home-7-fill"></i> {{ separate_apartment_count }}</h3>
+            <small><span class="d-inline-flex text-success">{{ separate_apartment_percentage }} %</span> </small>
+          </div><!-- card-body -->
+        </div><!-- card-one -->
+      </div><!-- col -->
+      <div class="col-6 col-xl-3">
+        <div class="card card-one">
+          <div class="card-body">
+            <label class="card-title fs-sm fw-medium mb-1">Separate Houses</label>
+            <h3 class="card-value mb-1"><i class="ri-home-4-line"></i> <span></span>{{ separate_house_count }}</h3>
+            <small><span class="d-inline-flex text-success">{{ separate_house_percentage }} %</span></small>
+          </div><!-- card-body -->
+        </div><!-- card-one -->
+      </div><!-- col -->
+      <div class="col-6 col-xl-3">
+        <div class="card card-one">
+          <div class="card-body">
+            <label class="card-title fs-sm fw-medium mb-1">Other Types of Dwellings</label>
+            <h3 class="card-value mb-1"><i class="ri-home-gear-fill"></i>{{ other_dwelling_count }}</h3>
+            <small><span class="d-inline-flex text-success">{{ other_dwelling_percentage }} %</span> </small>
+          </div><!-- card-body -->
+        </div><!-- card-one -->
+      </div><!-- col -->
+      <div class="col-6 col-xl-3">
+        <div class="card card-one">
+          <div class="card-body">
+            <label class="card-title fs-sm fw-medium mb-1">Empty Cells</label>
+            <h3 class="card-value mb-1"><i class="ri-home-smile-2-fill"></i>{{ empty_cells_count }}</h3>
+            <small><span class="d-inline-flex text-success">{{ empty_cells_percentage }} %</span></small>
+          </div><!-- card-body -->
+        </div><!-- card-one -->
+      </div><!-- col -->
+
+      <div class="col-xl-3">
+        <div class="row g-3">
+          <div class="col-sm-6 col-xl-12">
+            <div class="card card-one">
+              <div class="card-body overflow-hidden">
+                <h2 class="card-value mb-1">{{ average_area }} sq. meters</h2>
+                <h6 class="text-dark fw-semibold mb-1">Average Area</h6>
+                <p class="fs-xs text-secondary mb-0 lh-4">Average area of the dwellings.</p>        
+                {% comment %} <div id="apexChart2" class="apex-chart-three"></div> {% endcomment %}
+
+              </div>
+            </div><!-- card -->
+          </div><!-- col -->
+          <div class="col-sm-6 col-xl-12">
+            <div class="card card-one">
+              <div class="card-body">
+                <h2 class="card-value mb-1">{{ average_distance_to_hospital }} m</h2>
+                <h6 class="text-dark fw-semibold mb-1">Average distance to Hospital</h6>
+                <p class="fs-xs text-secondary mb-0 lh-4">Average distance to the nearest hospital.</p>
+                {% comment %} <div id="apexChart3" class="apex-chart-three"></div> {% endcomment %}
+              </div>
+            </div><!-- card -->
+          </div><!-- col -->
+          <div class="col-sm-6 col-xl-12">
+            <div class="card card-one">
+              <div class="card-body">
+                <h2 class="card-value mb-1">{{ average_distance_to_school }} m</h2>
+                <h6 class="text-dark fw-semibold mb-1">Average distance to School</h6>
+                <p class="fs-xs text-secondary mb-0 lh-4">Average distance to the nearest school.</p>
+                {% comment %} <div id="apexChart3" class="apex-chart-three"></div> {% endcomment %}
+              </div>
+            </div><!-- card -->
+          </div><!-- col -->
+          
+        </div><!-- row -->
+      </div><!-- col -->
+
+      <div class="col-sm-6 col-xl">
+        <div class="card card-one">
+          <div class="card-header">
+            <h6 class="card-title">Year of Settlement</h6>
+            <nav class="nav nav-icon nav-icon-sm ms-auto">
+              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+            </nav>
+          </div><!-- card-header -->
+          <div class="card-body">
+            <div class="d-flex align-items-baseline gap-2 mb-0">
+              <h1 class="card-value mb-0">{{ total_count }}</h1>
+              
+            </div>
+            <p class="fs-sm">The following table represents the year of settlement:</p>
+
+            <table class="table table-ratings mb-0">
+              <tbody>
+                <tr>
+                  <td><strong>Before 1990</strong></td>
+                  <td>
+                    <div class="progress flex-fill ht-5">
+                      <div class="progress-bar bg-warning" role="progressbar" style="width: {{ before_1990_percentage }}ex;" aria-valuenow="{{ excellent_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>                   
+                  </td>
+                  <td>{{ before_1990_count }}</td>
+                  <td>{{ before_1990_percentage }} %</td>
+                </tr>
+                <tr>
+                  <td><strong>Between 1990 - 2000</strong></td>
+                  <td>
+                    <div class="progress flex-fill ht-5">
+                      <div class="progress-bar" role="progressbar" style="width: {{ between_1990_2000_percentage }}ex;" aria-valuenow="{{ between_1990_2000_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>  
+                  </td>
+                  <td>{{ between_1990_2000_count }}</td>
+                  <td>{{ between_1990_2000_percentage }} %</td>
+                </tr>
+                <tr>
+                  <td><strong>Between 2000 - 2010</strong></td>
+                  <td>
+                    <div class="progress flex-fill ht-5">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: {{ between_2000_2010_percentage }}ex;" aria-valuenow="{{ between_2000_2010_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>  
+                  </td>
+                  <td>{{ between_2000_2010_count }}</td>
+                  <td>{{ between_2000_2010_percentage }} %</td>
+                </tr>
+                <tr>
+                  <td><strong>After 2010</strong></td>
+                  <td>
+                    <div class="progress flex-fill ht-5">
+                      <div class="progress-bar bg-dark" role="progressbar" style="width: {{ after_2010_percentage }}ex;" aria-valuenow="{{ after_2010_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>  
+                  </td>
+                  <td>{{ after_2010_count }}</td>
+                  <td>{{ after_2010_percentage }} %</td>
+                </tr>
+                <tr>
+                  <td><strong>Empty cells</strong></td>
+                  <td>
+                    <div class="progress flex-fill ht-5">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: {{ empty_cells_percentage }}px;" aria-valuenow="{{ empty_cells_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </td>
+                  <td>{{ empty_cells_count }}</td>
+                  <td>{{ empty_cells_percentage }} %</td>
+                </tr>
+              </tbody>
+            </table>
+          </div><!-- card-body -->
+        </div><!-- card -->
+      </div><!-- col -->
+
+
+
+
+
+      <div class="col-sm-6 col-xl">
+        <div class="card card-one">
+            <div class="card-header">
+                <h6 class="card-title">Water quality ratings</h6>
+                <nav class="nav nav-icon nav-icon-sm ms-auto">
+                    <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+                    <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+                </nav>
+            </div><!-- card-header -->
+            <div class="card-body">
+              <div class="d-flex align-items-baseline gap-2 mb-0">
+                <!-- Display the overall score dynamically -->
+                <h1 class="card-value mb-0">{{ overall_score }}</h1>
+                <div class="progress flex-fill ht-5">
+                    <!-- Update the values for the progress bars dynamically using inline styles -->
+                    <div class="progress-bar" role="progressbar" style="width: {{ excellent_percentage }}%;" aria-valuenow="{{ excellent_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: {{ mostly_good_percentage }}%;" aria-valuenow="{{ mostly_good_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: {{ sometimes_good_percentage }}%;" aria-valuenow="{{ sometimes_good_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-info" role="progressbar" style="width: {{ poor_percentage }}%;" aria-valuenow="{{ poor_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{ very_poor_percentage }}%;" aria-valuenow="{{ very_poor_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: {{ empty_cells_percentage }}%;" aria-valuenow="{{ empty_cells_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+                <p class="fs-sm">The following table represents the water quality ratings:</p>
+                <table class="table table-ratings mb-0">
+                    <tbody>
+                        <tr>
+                            <td><span class="badge-dot bg-primary"></span></td>
+                            <td><strong>Excellent</strong></td>
+                            <td>{{ excellent_count }}</td>
+                            <td>{{ excellent_percentage }}%</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-dot bg-success"></span></td>
+                            <td><strong>Mostly good</strong></td>
+                            <td>{{ mostly_good_count }}</td>
+                            <td>{{ mostly_good_percentage }}%</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-dot bg-warning"></span></td>
+                            <td><strong>Sometimes good, but some other times bad</strong></td>
+                            <td>{{ sometimes_good_count }}</td>
+                            <td>{{ sometimes_good_percentage }}%</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-dot bg-info"></span></td>
+                            <td><strong>Poor</strong></td>
+                            <td>{{ poor_count }}</td>
+                            <td>{{ poor_percentage }}%</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-dot bg-danger"></span></td>
+                            <td><strong>Very Poor</strong></td>
+                            <td>{{ very_poor_count }}</td>
+                            <td>{{ very_poor_percentage }}%</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-dot bg-dark"></span></td>
+                            <td><strong>Empty Cells</strong></td>
+                            <td>{{ empty_cells_count }}</td>
+                            <td>{{ empty_cells_percentage }}%</td>
+                    </tbody>
+                </table>
+            </div><!-- card-body -->
+        </div><!-- card -->
+    </div><!-- col -->
+
+    
+
+    
+
+
+      <div class="card card-one">
+          <div class="card-header border-0 pb-2">
+              <h6 class="card-title">Electricity Disruption</h6>
+              <nav class="nav nav-icon nav-icon-sm ms-auto">
+                  <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+                  <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+              </nav>
+          </div><!-- card-header -->
+          <div class="card-body pt-0">
+              <p class="fs-sm text-secondary mb-4">Frequency of electricity disruption experienced by residents.</p>
+  
+              <div class="progress progress-finance mb-4">
+                <div class="progress-bar" role="progressbar" style="width: {{ never_percentage }}%;" aria-valuenow="{{ never_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ never_percentage }}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ several_times_a_year_percentage }}%;" aria-valuenow="{{ several_times_a_year_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ several_times_a_year_percentage }}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ once_a_month_percentage }}%;" aria-valuenow="{{ once_a_month_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ once_a_month_percentage }}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ once_a_week_percentage }}%;" aria-valuenow="{{ once_a_week_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ once_a_week_percentage }}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ several_times_a_week_percentage }}%;" aria-valuenow="{{ several_times_a_week_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ several_times_a_week_percentage }}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ everyday_percentage }}%;" aria-valuenow="{{ everyday_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ everyday_percentage }}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{ no_power_supply_percentage }}%;" aria-valuenow="{{ no_power_supply_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ no_power_supply_percentage }}%</div>
+              </div>
+            
+            
+            
+  
+              <div class="row g-3">
+                  <div class="col">
+                      <label class="card-label fs-sm fw-medium mb-1">Never</label>
+                      <h2 class="card-value mb-0">{{ never_percentage }}%</h2>
+                  </div><!-- col -->
+                  <div class="col">
+                      <label class="card-label fs-sm fw-medium mb-1">Several times a year</label>
+                      <h2 class="card-value mb-0">{{ several_times_a_year_percentage }}%</h2>
+                  </div><!-- col -->
+                  <div class="col">
+                      <label class="card-label fs-sm fw-medium mb-1">Once a month</label>
+                      <h2 class="card-value mb-0">{{ once_a_month_percentage }}%</h2>
+                  </div><!-- col -->
+                  <div class="col">
+                      <label class="card-label fs-sm fw-medium mb-1">Once a week</label>
+                      <h2 class="card-value mb-0">{{ once_a_week_percentage }}%</h2>
+                  </div><!-- col -->
+                  <div class="col">
+                      <label class="card-label fs-sm fw-medium mb-1">Several times a week</label>
+                      <h2 class="card-value mb-0">{{ several_times_a_week_percentage }}%</h2>
+                  </div><!-- col -->
+                  <div class="col">
+                    <label class="card-label fs-sm fw-medium mb-1">Everyday</label>
+                    <h2 class="card-value mb-0">{{ everyday_percentage }}%</h2>
+                </div><!-- col -->
+                <div class="col">
+                  <label class="card-label fs-sm fw-medium mb-1">No power supply at all</label>
+                  <h2 class="card-value mb-0">{{ no_power_supply_percentage }}%</h2>
+                </div><!-- col -->
+                    
+              </div><!-- row -->
+          </div><!-- card-body -->
+      </div><!-- card -->
+
+  
+    
+
+
+
+    </div><!-- row -->
+    {% include "_partials/copyright.html" %}
+
+   
+  </div><!-- main -->
+
+
+{% endblock content %}

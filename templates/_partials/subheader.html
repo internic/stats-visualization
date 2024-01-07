@@ -1,0 +1,56 @@
+<div class="d-md-flex align-items-center justify-content-between mb-4">
+    <div>
+        <ol class="breadcrumb fs-sm mb-1">
+            <li class="breadcrumb-item"><a href="#">Dataset</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                {% if request.path == '/household-demographics/' %}
+                    Household 
+                {% elif request.path == '/savingsAssets/' %}
+                    Housing, Assets and Savings
+                {% elif request.path == '/housing-amenities/' %}
+                    Consumption and Expenditure
+                {% elif request.path == '/education-employment/' %}
+                    Income source
+                {% elif request.path == '/health-nutrition/' %}
+                    Migration
+                {% elif request.path == '/migration-remittances/' %}
+                    Shocks
+                {% elif request.path == '/family-background/' %}
+                    Climate change
+                {% elif request.path == '/community-perception/' %}
+                    Community Perception
+                {% else %}
+                    Default Header
+                {% endif %}
+            </li>
+        </ol>
+        {% comment %} <h4 class="main-title mb-0">Household Demographics</h4> {% endcomment %}
+        <h4 class="main-title mb-0">
+                {% if request.path == '/household-demographics/' %}
+                    Household 
+                {% elif request.path == '/savingsAssets/' %}
+                    Housing, Assets and Savings
+                {% elif request.path == '/housing-amenities/' %}
+                    Consumption and Expenditure
+                {% elif request.path == '/education-employment/' %}
+                    Income source
+                {% elif request.path == '/health-nutrition/' %}
+                    Migration
+                {% elif request.path == '/migration-remittances/' %}
+                    Shocks
+                {% elif request.path == '/family-background/' %}
+                    Climate change
+                {% elif request.path == '/community-perception/' %}
+                    Community Perception
+                {% else %}
+                    Default Header
+                {% endif %}
+            
+        </h4>
+    </div>
+    <div class="d-flex gap-2 mt-3 mt-md-0">
+        <button type="button" class="btn btn-white d-flex align-items-center gap-2"><i class="ri-share-line fs-18 lh-1"></i>Share</button>
+        <button type="button" class="btn btn-white d-flex align-items-center gap-2"><i class="ri-printer-line fs-18 lh-1"></i>Print</button>
+        <button type="button" class="btn btn-primary d-flex align-items-center gap-2"><i class="ri-bar-chart-2-line fs-18 lh-1"></i>Generate<span class="d-none d-sm-inline"> Report</span></button>
+    </div>
+</div>
