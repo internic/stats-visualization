@@ -175,7 +175,7 @@ def household_demographics(request):
 
 # Economic Wellbeing Page
 
-def economic_wellbeing(request):
+def savingsAssets(request):
     context = {}
 
     # Query the database to get the count for each water quality option
@@ -355,7 +355,7 @@ def economic_wellbeing(request):
     context['average_distance_to_school'] = round(average_distance_to_school, 2)
     
 
-    return render(request, "pages/2 - economic-wellbeing/economic-wellbeing.html", context)
+    return render(request, "pages/2 - Savings, Assetts and Savings/SavingsAssettsSavings.html", context)
 
 # Housing and Amenities Page
 def housing_and_amenities(request):
