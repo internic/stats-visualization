@@ -80,16 +80,7 @@
               </div>
             </div><!-- card -->
           </div><!-- col -->
-          <div class="col-sm-6 col-xl-12">
-            <div class="card card-one">
-              <div class="card-body">
-                <h2 class="card-value mb-1">{{ average_distance_to_pharmacy }} m</h2>
-                <h6 class="text-dark fw-semibold mb-1">Average distance to Pharmacy</h6>
-                <p class="fs-xs text-secondary mb-0 lh-4">Average distance to the nearest pharmacy.</p>
-                {% comment %} <div id="apexChart3" class="apex-chart-three"></div> {% endcomment %}
-              </div>
-            </div><!-- card -->
-          </div><!-- col -->
+          
         </div><!-- row -->
       </div><!-- col -->
 
@@ -155,7 +146,7 @@
                   <td><strong>Empty cells</strong></td>
                   <td>
                     <div class="progress flex-fill ht-5">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: {{ empty_cells_percentage }}ex;" aria-valuenow="{{ empty_cells_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar bg-success" role="progressbar" style="width: {{ empty_cells_percentage }}px;" aria-valuenow="{{ empty_cells_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </td>
                   <td>{{ empty_cells_count }}</td>
@@ -194,11 +185,7 @@
                     <div class="progress-bar bg-dark" role="progressbar" style="width: {{ empty_cells_percentage }}%;" aria-valuenow="{{ empty_cells_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
-            
-            
                 <p class="fs-sm">The following table represents the water quality ratings:</p>
-                
-    
                 <table class="table table-ratings mb-0">
                     <tbody>
                         <tr>
@@ -206,8 +193,6 @@
                             <td><strong>Excellent</strong></td>
                             <td>{{ excellent_count }}</td>
                             <td>{{ excellent_percentage }}%</td>
-
-                            
                         </tr>
                         <tr>
                             <td><span class="badge-dot bg-success"></span></td>

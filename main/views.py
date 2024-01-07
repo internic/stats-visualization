@@ -354,16 +354,6 @@ def economic_wellbeing(request):
     # Pass the data to the template
     context['average_distance_to_school'] = round(average_distance_to_school, 2)
     
-    ########################### AVERAGE DISTANCE TO Pharmacy ###########################################################
-    
-    # Calculate average distance to pharmacy
-    total_distance_sum_to_pharmacy = sum(property.distance_to_pharmacy or 0 for property in properties)
-    total_properties_pharmacy = len(properties)
-    average_distance_to_pharmacy = total_distance_sum_to_pharmacy / total_properties_pharmacy if total_properties > 0 else 0
-    
-    # Pass the data to the template
-    context['average_distance_to_pharmacy'] = round(average_distance_to_pharmacy, 2)
-    
 
     return render(request, "pages/2 - economic-wellbeing/economic-wellbeing.html", context)
 
