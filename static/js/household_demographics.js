@@ -518,6 +518,7 @@ chartMaritalDonut.render();
     series: disabilityData,
     chart: {
       type: 'donut',
+      width: '320px',
     },
     labels: ['Yes', 'No'],
     colors: ['#33d685', '#008ffb'],
@@ -546,6 +547,7 @@ chartMaritalDonut.render();
     series: certificateData,
     chart: {
       type: 'donut',
+      width: '320px',
     },
     labels: ['Yes', 'No'],
     colors: ['#33d685', '#008ffb'],
