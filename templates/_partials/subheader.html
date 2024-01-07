@@ -4,19 +4,19 @@
             <li class="breadcrumb-item"><a href="#">Dataset</a></li>
             <li class="breadcrumb-item active" aria-current="page">
                 {% if request.path == '/household-demographics/' %}
-                Household Demographics
+                    Household 
                 {% elif request.path == '/economic-wellbeing/' %}
                     Savings, Assetts and Savings
                 {% elif request.path == '/housing-amenities/' %}
-                    Housing and Amenities
+                    Consumption and Expenditure
                 {% elif request.path == '/education-employment/' %}
-                    Education and Employment
+                    Income source
                 {% elif request.path == '/health-nutrition/' %}
-                    Health and Nutrition
+                    Migration
                 {% elif request.path == '/migration-remittances/' %}
-                    Migration and Remittances
+                    Shocks
                 {% elif request.path == '/family-background/' %}
-                    Family Background
+                    Climate change
                 {% elif request.path == '/community-perception/' %}
                     Community Perception
                 {% else %}
@@ -26,26 +26,25 @@
         </ol>
         {% comment %} <h4 class="main-title mb-0">Household Demographics</h4> {% endcomment %}
         <h4 class="main-title mb-0">
-            {% if request.path == '/household-demographics/' %}
-                Household Demographics
-            {% elif request.path == '/economic-wellbeing/' %}
-                Housing Distribution
-
-            {% elif request.path == '/housing-amenities/' %}
-                Housing and Amenities
-            {% elif request.path == '/education-employment/' %}
-                Education and Employment
-            {% elif request.path == '/health-nutrition/' %}
-                Health and Nutrition
-            {% elif request.path == '/migration-remittances/' %}
-                Migration and Remittances
-            {% elif request.path == '/family-background/' %}
-                Family Background
-            {% elif request.path == '/community-perception/' %}
-                Community Perception
-            {% else %}
-                Default Header
-            {% endif %}
+                {% if request.path == '/household-demographics/' %}
+                    Household 
+                {% elif request.path == '/economic-wellbeing/' %}
+                    Savings, Assetts and Savings
+                {% elif request.path == '/housing-amenities/' %}
+                    Consumption and Expenditure
+                {% elif request.path == '/education-employment/' %}
+                    Income source
+                {% elif request.path == '/health-nutrition/' %}
+                    Migration
+                {% elif request.path == '/migration-remittances/' %}
+                    Shocks
+                {% elif request.path == '/family-background/' %}
+                    Climate change
+                {% elif request.path == '/community-perception/' %}
+                    Community Perception
+                {% else %}
+                    Default Header
+                {% endif %}
             
         </h4>
     </div>
