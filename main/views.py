@@ -334,8 +334,35 @@ def economic_wellbeing(request):
     context['empty_cells_percentage'] = round(empty_cells_percentage, 2)
     
     
-    ########################### HOUSEHOLD PROPERTY OWNERSHIP CALCULATION ###########################################################
+    ########################### AVERAGE DISTANCE TO HOSPITAL ###########################################################
     
+    # Calculate average distance to hospital
+    total_distance_sum_to_hospital = sum(property.distance_to_hospital or 0 for property in properties)
+    total_properties_hospital = len(properties)
+    average_distance_to_hospital = total_distance_sum_to_hospital / total_properties_hospital if total_properties > 0 else 0
+    
+    # Pass the data to the template
+    context['average_distance_to_hospital'] = round(average_distance_to_hospital, 2)
+    
+    ########################### AVERAGE DISTANCE TO SCHOOL ###########################################################
+    
+    # Calculate average distance to school
+    total_distance_sum_to_school = sum(property.distance_to_school or 0 for property in properties)
+    total_properties_school = len(properties)
+    average_distance_to_school = total_distance_sum_to_school / total_properties_school if total_properties > 0 else 0
+    
+    # Pass the data to the template
+    context['average_distance_to_school'] = round(average_distance_to_school, 2)
+    
+    ########################### AVERAGE DISTANCE TO Pharmacy ###########################################################
+    
+    # Calculate average distance to pharmacy
+    total_distance_sum_to_pharmacy = sum(property.distance_to_pharmacy or 0 for property in properties)
+    total_properties_pharmacy = len(properties)
+    average_distance_to_pharmacy = total_distance_sum_to_pharmacy / total_properties_pharmacy if total_properties > 0 else 0
+    
+    # Pass the data to the template
+    context['average_distance_to_pharmacy'] = round(average_distance_to_pharmacy, 2)
     
 
     return render(request, "pages/2 - economic-wellbeing/economic-wellbeing.html", context)

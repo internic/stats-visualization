@@ -55,7 +55,7 @@
                 <h2 class="card-value mb-1">{{ average_area }} sq. meters</h2>
                 <h6 class="text-dark fw-semibold mb-1">Average Area</h6>
                 <p class="fs-xs text-secondary mb-0 lh-4">Average area of the dwellings.</p>        
-                <div id="apexChart2" class="apex-chart-three"></div>
+                {% comment %} <div id="apexChart2" class="apex-chart-three"></div> {% endcomment %}
 
               </div>
             </div><!-- card -->
@@ -63,10 +63,30 @@
           <div class="col-sm-6 col-xl-12">
             <div class="card card-one">
               <div class="card-body">
-                <h2 class="card-value mb-1">34</h2>
-                <h6 class="text-dark fw-semibold mb-1">Net Profit Margin</h6>
-                <p class="fs-xs text-secondary mb-0 lh-4">Measures your business at generating profit sales.</p>
-                <div id="apexChart3" class="apex-chart-three"></div>
+                <h2 class="card-value mb-1">{{ average_distance_to_hospital }} m</h2>
+                <h6 class="text-dark fw-semibold mb-1">Average distance to Hospital</h6>
+                <p class="fs-xs text-secondary mb-0 lh-4">Average distance to the nearest hospital.</p>
+                {% comment %} <div id="apexChart3" class="apex-chart-three"></div> {% endcomment %}
+              </div>
+            </div><!-- card -->
+          </div><!-- col -->
+          <div class="col-sm-6 col-xl-12">
+            <div class="card card-one">
+              <div class="card-body">
+                <h2 class="card-value mb-1">{{ average_distance_to_school }} m</h2>
+                <h6 class="text-dark fw-semibold mb-1">Average distance to School</h6>
+                <p class="fs-xs text-secondary mb-0 lh-4">Average distance to the nearest school.</p>
+                {% comment %} <div id="apexChart3" class="apex-chart-three"></div> {% endcomment %}
+              </div>
+            </div><!-- card -->
+          </div><!-- col -->
+          <div class="col-sm-6 col-xl-12">
+            <div class="card card-one">
+              <div class="card-body">
+                <h2 class="card-value mb-1">{{ average_distance_to_pharmacy }} m</h2>
+                <h6 class="text-dark fw-semibold mb-1">Average distance to Pharmacy</h6>
+                <p class="fs-xs text-secondary mb-0 lh-4">Average distance to the nearest pharmacy.</p>
+                {% comment %} <div id="apexChart3" class="apex-chart-three"></div> {% endcomment %}
               </div>
             </div><!-- card -->
           </div><!-- col -->
