@@ -1,11 +1,12 @@
 from django.urls import path
 from . import views
+from .views import HouseholdDemographicsView
 
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("dashboard/", views.dashboard, name="dashboard"),
+    # path("", views.home, name="home"),
+    # path("dashboard/", views.dashboard, name="dashboard"),
+    path("", HouseholdDemographicsView.as_view(), name='household-demographics'),
     path('import_dataset/', views.import_dataset, name='import_dataset'),
-    path('household-demographics/', views.household_demographics, name='household-demographics'),
     path('economic-wellbeing/', views.economic_wellbeing, name='economic-wellbeing'),
     path('housing-amenities/', views.housing_and_amenities, name='housing-and-amenities'),
     path('education-employment/', views.education_and_employment, name='education-employment'),

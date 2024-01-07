@@ -24821,3 +24821,42 @@ textarea.parsley-success:focus {
   line-height: 1;
   margin-right: 10px;
 }
+
+.bg-batken {
+  background-color: #dc3545;
+}
+
+.bg-bishkek {
+  background-color: #1c96e9;
+}
+
+.bg-chui {
+  background-color: #fd7e14;
+}
+
+.bg-issyk-kul {
+  background-color: #0cb785;
+}
+
+.bg-jalal-abad {
+  background-color: #0dcaf0;
+}
+
+.bg-naryn {
+  background-color: #506fd9;
+}
+
+.bg-osh {
+  background-color: #ffc107;
+}
+
+.bg-talas {
+  background-color: #ffc107;
+}
+
+.py-20 {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
+
+

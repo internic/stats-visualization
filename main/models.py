@@ -150,11 +150,12 @@ class Education(models.Model):
     current_grade = models.IntegerField(verbose_name="Current Grade of Enrollment", null=True, blank=True)
     attending = models.IntegerField(choices=ATTENDING_CHOICES, verbose_name="Currently Attending the Institution", null=True, blank=True)
     
-    school_fees = models.IntegerField(verbose_name="School Fees/Tuition Expenditure (Past Academic Year)", null=True, blank=True)
-    uniforms_supplies = models.IntegerField(verbose_name="Uniforms/Supplies Expenditure (Past Academic Year)", null=True, blank=True)
-    non_formal_payments = models.IntegerField(verbose_name="Non-Formal Payments Expenditure (Past Academic Year)", null=True, blank=True)
-    tutoring_payments = models.IntegerField(verbose_name="Tutoring and Payments to Staff (Past Academic Year)", null=True, blank=True)
-    total_schooling_expenditure = models.IntegerField(verbose_name="Total Schooling Expenditure (Past Academic Year)", null=True, blank=True)
+    school_fees = models.IntegerField(verbose_name="School Fees/Tuition Expenditure", null=True, blank=True)
+    uniforms_supplies = models.IntegerField(verbose_name="Uniforms/Supplies Expenditure", null=True, blank=True)
+    non_formal_payments = models.IntegerField(verbose_name="Non-Formal Payments Expenditure", null=True, blank=True)
+    tutoring_payments = models.IntegerField(verbose_name="Tutoring and Payments to Staff", null=True, blank=True)
+    total_schooling_expenditure = models.IntegerField(verbose_name="Total Schooling Expenditure", null=True, blank=True)
+    
     homework_hours_daily = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="Daily Homework Hours (Past Academic Year)", null=True, blank=True)
     help_at_home_hours_daily = models.IntegerField(verbose_name="Daily Hours Helping at Home/Business/Farm (Past Academic Year)", null=True, blank=True)
     outside_work_hours_daily = models.IntegerField(verbose_name="Daily Hours Working Outside for Money (Past Academic Year)", null=True, blank=True)
