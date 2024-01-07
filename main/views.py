@@ -184,9 +184,10 @@ def economic_wellbeing(request):
     sometimes_good_count = HouseholdProperty.objects.filter(water_quality=3).count()
     poor_count = HouseholdProperty.objects.filter(water_quality=4).count()
     very_poor_count = HouseholdProperty.objects.filter(water_quality=5).count()
+    empty_cells_count = HouseholdProperty.objects.filter(water_quality__isnull=True).count()
 
     # Calculate the total count
-    total_count = excellent_count + mostly_good_count + sometimes_good_count + poor_count + very_poor_count
+    total_count = excellent_count + mostly_good_count + sometimes_good_count + poor_count + very_poor_count + empty_cells_count
 
     # Calculate the percentage for each option
     excellent_percentage = (excellent_count / total_count) * 100 if total_count > 0 else 0
@@ -194,9 +195,11 @@ def economic_wellbeing(request):
     sometimes_good_percentage = (sometimes_good_count / total_count) * 100 if total_count > 0 else 0
     poor_percentage = (poor_count / total_count) * 100 if total_count > 0 else 0
     very_poor_percentage = (very_poor_count / total_count) * 100 if total_count > 0 else 0
+    empty_cells_percentage = (empty_cells_count / total_count) * 100 if total_count > 0 else 0
 
-    # Calculate the overall score out of 10
-    overall_score = (excellent_count * 5 + mostly_good_count * 4 + sometimes_good_count * 3 + poor_count * 2 + very_poor_count * 1) / total_count if total_count > 0 else 0
+    # Calculate the overall score out of 10 including empty cells
+    # overall_score = (excellent_count * 5 + mostly_good_count * 4 + sometimes_good_count * 3 + poor_count * 2 + very_poor_count * 1) / total_count if total_count > 0 else 0
+    overall_score = (excellent_count * 5 + mostly_good_count * 4 + sometimes_good_count * 3 + poor_count * 2 + very_poor_count * 1) / (total_count - empty_cells_count) if total_count > 0 else 0
 
 
     # Pass the data to the template
@@ -205,16 +208,18 @@ def economic_wellbeing(request):
     context['sometimes_good_count'] = sometimes_good_count
     context['poor_count'] = poor_count
     context['very_poor_count'] = very_poor_count
+    context['empty_cells_count'] = empty_cells_count
 
     context['excellent_percentage'] = round(excellent_percentage, 2)
     context['mostly_good_percentage'] = round(mostly_good_percentage, 2)
     context['sometimes_good_percentage'] = round(sometimes_good_percentage, 2)
     context['poor_percentage'] = round(poor_percentage, 2)
     context['very_poor_percentage'] = round(very_poor_percentage, 2)
+    context['empty_cells_percentage'] = round(empty_cells_percentage, 2)
 
     context['overall_score'] = round(overall_score, 2)
     
-    # ##############################################################################################################
+    # ###################################### ELECTRICITY DISRUPTION CALCULATION   ########################################################################
     
      # Query the database to get the count for each electricity disruption option
     never_count = HouseholdProperty.objects.filter(electricity_disruption=1).count()
@@ -245,6 +250,37 @@ def economic_wellbeing(request):
     context['several_times_a_week_percentage'] = round(several_times_a_week_percentage, 2)
     context['everyday_percentage'] = round(everyday_percentage, 2)
     context['no_power_supply_percentage'] = round(no_power_supply_percentage, 2)
+    
+    ########################### HOUSING TYPE CALCULATION ###########################################################
+    
+    
+    # Calculate the number of people with different housing types
+    total_households = HouseholdProperty.objects.count()
+    separate_apartment_count = HouseholdProperty.objects.filter(housing_type=1).count()
+    separate_house_count = HouseholdProperty.objects.filter(housing_type=2).count()
+    other_dwelling_count = HouseholdProperty.objects.filter(housing_type=3).count()
+
+    # Calculate the number of empty cells
+    empty_cells_count = HouseholdProperty.objects.filter(housing_type__isnull=True).count()
+
+    # Calculate percentages
+    separate_apartment_percentage = (separate_apartment_count / total_households) * 100
+    separate_house_percentage = (separate_house_count / total_households) * 100
+    other_dwelling_percentage = (other_dwelling_count / total_households) * 100
+    empty_cells_percentage = (empty_cells_count / total_households) * 100
+
+    context['total_households'] = total_households
+    context['separate_apartment_count'] = separate_apartment_count
+    context['separate_apartment_percentage'] = round(separate_apartment_percentage, 2)
+
+    context['separate_house_count'] = separate_house_count
+    context['separate_house_percentage'] = round(separate_house_percentage, 2)
+
+    context['other_dwelling_count'] = other_dwelling_count
+    context['other_dwelling_percentage'] = round(other_dwelling_percentage, 2)
+
+    context['empty_cells_count'] = empty_cells_count
+    context['empty_cells_percentage'] = round(empty_cells_percentage, 2)
 
     return render(request, "pages/2 - economic-wellbeing/economic-wellbeing.html", context)
 

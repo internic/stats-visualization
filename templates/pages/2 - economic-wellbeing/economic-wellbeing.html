@@ -7,73 +7,44 @@
   <div class="main main-app p-3 p-lg-4">
 
     {% include "_partials/subheader.html" %}
+    
 
     <div class="row g-3">
-      <div class="col-sm-4">
+      <div class="col-6 col-xl-3">
         <div class="card card-one">
-          <div class="card-body p-3">
-            <div class="d-flex d-sm-block d-xl-flex align-items-center">
-              <div class="helpdesk-icon bg-primary text-white"><i class="ri-bell-line"></i></div>
-              <div class="ms-3 ms-sm-0 ms-xl-3 mt-sm-3 mt-xl-0">
-                <h2 class="card-value d-flex align-items-baseline mb-0">387 <small class="text-success">+3.82%</small></h2>
-                <label class="card-label fs-sm fw-medium mb-1">Support Requests</label>
-                <div class="mutual-badge">
-                  <ul>
-                    <li><a href="" class="avatar"><img src="../assets/img/img10.jpg" alt=""></a></li>
-                    <li><a href="" class="avatar"><img src="../assets/img/img11.jpg" alt=""></a></li>
-                    <li><a href="" class="avatar"><img src="../assets/img/img9.jpg" alt=""></a></li>
-                    <li><a href="" class="avatar"><img src="../assets/img/img8.jpg" alt=""></a></li>
-                  </ul>
-                  <label>8 support agents</label>
-                </div>
-              </div>
-            </div>
+          <div class="card-body">
+            <label class="card-title fs-sm fw-medium mb-1">Separate Apartments</label>
+            <h3 class="card-value mb-1"><i class="ri-home-7-fill"></i> {{ separate_apartment_count }}</h3>
+            <small><span class="d-inline-flex text-success">{{ separate_apartment_percentage }} %</span> </small>
           </div><!-- card-body -->
-        </div><!-- card -->
+        </div><!-- card-one -->
       </div><!-- col -->
-      <div class="col-sm-4">
+      <div class="col-6 col-xl-3">
         <div class="card card-one">
-          <div class="card-body p-3">
-            <div class="d-flex d-sm-block d-xl-flex align-items-center">
-              <div class="helpdesk-icon bg-ui-02 text-white"><i class="ri-blaze-fill"></i></div>
-              <div class="ms-3 ms-sm-0 ms-xl-3 mt-sm-3 mt-xl-0">
-                <h2 class="card-value d-flex align-items-baseline mb-0">296 <small class="text-danger">-0.08%</small></h2>
-                <label class="card-label fs-sm fw-medium mb-1">Complaints Received</label>
-                <div class="mutual-badge">
-                  <ul>
-                    <li><a href="" class="avatar"><img src="../assets/img/img15.jpg" alt=""></a></li>
-                    <li><a href="" class="avatar"><img src="../assets/img/img16.jpg" alt=""></a></li>
-                    <li><a href="" class="avatar"><img src="../assets/img/img17.jpg" alt=""></a></li>
-                    <li><a href="" class="avatar"><img src="../assets/img/img18.jpg" alt=""></a></li>
-                  </ul>
-                  <label>5 support agents</label>
-                </div>
-              </div>
-            </div>
+          <div class="card-body">
+            <label class="card-title fs-sm fw-medium mb-1">Separate Houses</label>
+            <h3 class="card-value mb-1"><i class="ri-home-4-line"></i> <span></span>{{ separate_house_count }}</h3>
+            <small><span class="d-inline-flex text-success">{{ separate_house_percentage }} %</span></small>
           </div><!-- card-body -->
-        </div><!-- card -->
+        </div><!-- card-one -->
       </div><!-- col -->
-      <div class="col-sm-4">
+      <div class="col-6 col-xl-3">
         <div class="card card-one">
-          <div class="card-body p-3">
-            <div class="d-flex d-sm-block d-xl-flex align-items-center">
-              <div class="helpdesk-icon bg-ui-03 text-white"><i class="ri-star-smile-line"></i></div>
-              <div class="ms-3 ms-sm-0 ms-xl-3 mt-sm-3 mt-xl-0">
-                <h2 class="card-value d-flex align-items-baseline mb-0">198 <small class="text-danger">-0.03%</small></h2>
-                <label class="card-label fs-sm fw-medium mb-1">Complaints Resolved</label>
-                <div class="mutual-badge">
-                  <ul>
-                    <li><a href="" class="avatar"><img src="../assets/img/img7.jpg" alt=""></a></li>
-                    <li><a href="" class="avatar"><img src="../assets/img/img8.jpg" alt=""></a></li>
-                    <li><a href="" class="avatar"><img src="../assets/img/img9.jpg" alt=""></a></li>
-                    <li><a href="" class="avatar"><img src="../assets/img/img10.jpg" alt=""></a></li>
-                  </ul>
-                  <label>9 support agents</label>
-                </div>
-              </div>
-            </div>
+          <div class="card-body">
+            <label class="card-title fs-sm fw-medium mb-1">Other Types of Dwellings</label>
+            <h3 class="card-value mb-1"><i class="ri-home-gear-fill"></i>{{ other_dwelling_count }}</h3>
+            <small><span class="d-inline-flex text-success">{{ other_dwelling_percentage }} %</span> </small>
           </div><!-- card-body -->
-        </div><!-- card -->
+        </div><!-- card-one -->
+      </div><!-- col -->
+      <div class="col-6 col-xl-3">
+        <div class="card card-one">
+          <div class="card-body">
+            <label class="card-title fs-sm fw-medium mb-1">Empty Cells</label>
+            <h3 class="card-value mb-1"><i class="ri-home-smile-2-fill"></i>{{ empty_cells_count }}</h3>
+            <small><span class="d-inline-flex text-success">{{ empty_cells_percentage }} %</span></small>
+          </div><!-- card-body -->
+        </div><!-- card-one -->
       </div><!-- col -->
 
   
@@ -101,6 +72,7 @@
                     <div class="progress-bar bg-warning" role="progressbar" style="width: {{ sometimes_good_percentage }}%;" aria-valuenow="{{ sometimes_good_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                     <div class="progress-bar bg-info" role="progressbar" style="width: {{ poor_percentage }}%;" aria-valuenow="{{ poor_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                     <div class="progress-bar bg-danger" role="progressbar" style="width: {{ very_poor_percentage }}%;" aria-valuenow="{{ very_poor_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: {{ empty_cells_percentage }}%;" aria-valuenow="{{ empty_cells_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
             
@@ -120,28 +92,33 @@
                         </tr>
                         <tr>
                             <td><span class="badge-dot bg-success"></span></td>
-                            <td><strong>Very Good</strong></td>
+                            <td><strong>Mostly good</strong></td>
                             <td>{{ mostly_good_count }}</td>
                             <td>{{ mostly_good_percentage }}%</td>
                         </tr>
                         <tr>
                             <td><span class="badge-dot bg-warning"></span></td>
-                            <td><strong>Good</strong></td>
+                            <td><strong>Sometimes good, but some other times bad</strong></td>
                             <td>{{ sometimes_good_count }}</td>
                             <td>{{ sometimes_good_percentage }}%</td>
                         </tr>
                         <tr>
                             <td><span class="badge-dot bg-info"></span></td>
-                            <td><strong>Fair</strong></td>
+                            <td><strong>Poor</strong></td>
                             <td>{{ poor_count }}</td>
                             <td>{{ poor_percentage }}%</td>
                         </tr>
                         <tr>
                             <td><span class="badge-dot bg-danger"></span></td>
-                            <td><strong>Poor</strong></td>
+                            <td><strong>Very Poor</strong></td>
                             <td>{{ very_poor_count }}</td>
                             <td>{{ very_poor_percentage }}%</td>
                         </tr>
+                        <tr>
+                            <td><span class="badge-dot bg-dark"></span></td>
+                            <td><strong>Empty Cells</strong></td>
+                            <td>{{ empty_cells_count }}</td>
+                            <td>{{ empty_cells_percentage }}%</td>
                     </tbody>
                 </table>
             </div><!-- card-body -->
