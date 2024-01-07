@@ -1,4 +1,6 @@
 {% extends '_partials/base.html' %} {% block content %}
+{% load humanize %}
+
 
   {% include "_partials/sidebar.html" %}
 
@@ -10,117 +12,94 @@
     {% include "_partials/subheader.html" %}
 
     <div class="row g-3">
-      <div class="col-sm-6 col-xl-3">
+
+      <!-- Info blocks -->
+      <div class="col-6 col-xl-3">
         <div class="card card-one">
-          <div class="card-body overflow-hidden px-0">
-            <div class="crypto-item">
-              <div class="avatar bg-orange"><i class="ri-calculator-fill"></i></div>
-              <div class="crypto-body">
-                <label class="card-label">Math Score <span>(Avg)</span></label>
-                <h6 class="card-value">34</h6>
-              </div><!-- crypto-body -->
-            </div><!-- crypto-item -->
-            <div id="apexChart1" class="apex-chart-ten"></div>
+          <div class="card-body">
+            <label class="card-title fs-sm fw-medium mb-1">Total Number of Households</label>
+            <h3 class="card-value mb-1"><i class="ri-home-4-line"></i> {{ total_households|intcomma }}</h3>
+            <small>Across <span class="d-inline-flex text-success">{{ total_regions|intcomma }} </span> different regions</small>
           </div><!-- card-body -->
-          <div class="card-footer card-footer-crypto pt-0">
-            <div>Min <strong>56</strong></div>
-            <div>Max <strong>78</strong></div>
-          </div><!-- card-footer -->
-        </div><!-- card -->
+        </div><!-- card-one -->
       </div><!-- col -->
-      <div class="col-sm-6 col-xl-3">
+
+      <div class="col-6 col-xl-3">
         <div class="card card-one">
-          <div class="card-body overflow-hidden px-0">
-            <div class="crypto-item">
-              <div class="avatar bg-twitter"><i class="ri-book-2-fill"></i></div>
-              <div class="crypto-body">
-                <label class="card-label">Reading Score <span>(Avg)</span></label>
-                <h6 class="card-value">67</h6>
-              </div><!-- crypto-body -->
-            </div><!-- crypto-item -->
-            <div id="apexChart2" class="apex-chart-ten"></div>
+          <div class="card-body">
+            <label class="card-title fs-sm fw-medium mb-1">Most Common Interview Language</label>
+            <h3 class="card-value mb-1"><i class="ri-chat-poll-line"></i> {{ most_common_language }}</h3>
+            <small>Interviews conducted over <span class="d-inline-flex text-success">{{ interview_months }} </span> months</small>
           </div><!-- card-body -->
-          <div class="card-footer card-footer-crypto pt-0">
-            <div>Min <strong>00</strong></div>
-            <div>Max <strong>00</strong></div>
-          </div><!-- card-footer -->
-        </div><!-- card -->
+        </div><!-- card-one -->
       </div><!-- col -->
-      <div class="col-sm-6 col-xl-3">
+
+      <div class="col-6 col-xl-3">
         <div class="card card-one">
-          <div class="card-body overflow-hidden px-0">
-            <div class="crypto-item">
-              <div class="avatar bg-success"><i class="ri-edit-fill"></i></div>
-              <div class="crypto-body">
-                <label class="card-label">Writing Score <span>(Avg)</span></label>
-                <h6 class="card-value">00</h6>
-              </div><!-- crypto-body -->
-            </div><!-- crypto-item -->
-            <div id="apexChart3" class="apex-chart-ten"></div>
+          <div class="card-body">
+            <label class="card-title fs-sm fw-medium mb-1">Average Household Size</label>
+            <h3 class="card-value mb-1"><i class="ri-scales-line"></i> {{ avg_household_size|floatformat:0|intcomma }}</h3>
+            <small>Varies from <span class="d-inline-flex text-success">{{ min_household_size }}</span> to <span class="d-inline-flex text-success">{{ max_household_size }}</span> members</small>
           </div><!-- card-body -->
-          <div class="card-footer card-footer-crypto pt-0">
-            <div>Min <strong>00</strong></div>
-            <div>Max <strong>00</strong></div>
-          </div><!-- card-footer -->
-        </div><!-- card -->
+        </div><!-- card-one -->
       </div><!-- col -->
-      <div class="col-sm-6 col-xl-3">
+
+      <div class="col-6 col-xl-3">
         <div class="card card-one">
-          <div class="card-body overflow-hidden px-0">
-            <div class="crypto-item">
-              <div class="avatar bg-primary"><i class="ri-add-box-fill"></i></div>
-              <div class="crypto-body">
-                <label class="card-label">Total Average </label>
-                <h6 class="card-value">00</h6>
-              </div><!-- crypto-body -->
-            </div><!-- crypto-item -->
-            <div id="apexChart4" class="apex-chart-ten"></div>
+          <div class="card-body">
+            <label class="card-title fs-sm fw-medium mb-1">Average Response Quality</label>
+            <h3 class="card-value mb-1"><i class="ri-star-half-line"></i> {{ avg_quality|floatformat:1 }}</h3>
+            <small>On a scale from <span class="d-inline-flex text-danger">1 (Bad)</span> to <span class="d-inline-flex text-success">5 (Great)</span></small>
           </div><!-- card-body -->
-          <div class="card-footer card-footer-crypto pt-0">
-            <div>Lowest Score <strong>00</strong></div>
-            <div>Highest Score <strong>00</strong></div>
-          </div><!-- card-footer -->
-        </div><!-- card -->
+        </div><!-- card-one -->
       </div><!-- col -->
+
+      <!-- Household regional distribution -->
       <div class="col-xl-8">
         <div class="card card-one">
           <div class="card-header">
-            <h6 class="card-title">Scores Distribution</h6>
+            <h6 class="card-title">Interviewed households regional distribution</h6>
             <nav class="nav nav-icon nav-icon-sm ms-auto">
               <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
               <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
             </nav>
           </div><!-- card-header -->
-          <div class="card-body">
-            <!-- Grades combined bar chart -->
-            <div id="scoresBarChart" class="apex-chart-nine mb-4"></div>
-            <div class="row row-cols-auto gy-3 gx-5">
-              <div class="col">
-                <label class="fs-xs mb-1 text-secondary">Students</label>
-                <h4 class="ff-numerals text-dark mb-0">00</h4>
+          <div class="card-body p-4">
+            <div class="row align-items-center g-3">
+              <div class="col-md-4 d-flex flex-column justify-content-center">
+                <table class="table table-one">
+                  <thead>
+                    <tr>
+                      <th class="wd-40 pt-0">Regions</th>
+                      <th class="wd-60 pt-0">Households</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for region in households_per_region %}
+                      <tr>
+                          <td><span class="badge-dot bg-{{region.oblast|lower}} me-2"></span> <span class="fw-medium">{{ region.oblast }}</span></td>
+                          <td>{{ region.count|intcomma }}</td>
+                      </tr>
+                      {% endfor %}
+                      <br>
+                                        
+                  </tbody>
+                </table>
               </div><!-- col -->
-              <div class="col">
-                <label class="fs-xs mb-1 text-secondary">Avg Grade</label>
-                <h4 class="ff-numerals text-dark mb-0">00</h4>
+              <div class="col-md-8 mt-5 mt-md-0">
+                <div id="vmap" class="vmap-one"></div>
               </div><!-- col -->
-              <div class="col">
-                <label class="fs-xs mb-1 text-secondary">Highest Grade</label>
-                <h4 class="ff-numerals text-dark mb-0">00</h4>
-              </div><!-- col -->
-              <div class="col">
-                <label class="fs-xs mb-1 text-secondary">Lowest Grade</label>
-                <h4 class="ff-numerals text-dark mb-0">00</h4>
-              </div><!-- col -->
-
             </div><!-- row -->
           </div><!-- card-body -->
         </div><!-- card -->
       </div><!-- col -->
-      <div class="col-sm-6 col-xl-4">
+
+      <!-- Household Distributions by Gender, Ethnicity, Marital Status -->
+      <div class="col-xl-4 col-md-6">
         
         <div class="card card-one">
           <div class="card-header">
-            <h6 class="card-title">Scores detalization</h6>
+            <h6 class="card-title">Households members distribution</h6>
             <nav class="nav nav-icon nav-icon-sm ms-auto">
               <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
               <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
@@ -128,29 +107,228 @@
           </div><!-- card-header -->
           <div class="card-body p-3">
 
-            <!-- Tabs for each subject -->
+            <!-- Tabs for each group -->
             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="math-tab" data-bs-toggle="tab" data-bs-target="#math" type="button" role="tab" aria-controls="math" aria-selected="true">Math</button>
+                <button class="nav-link active" id="gender-tab" data-bs-toggle="tab" data-bs-target="#gender" type="button" role="tab" aria-controls="gender" aria-selected="true">Gender</button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="reading-tab" data-bs-toggle="tab" data-bs-target="#reading" type="button" role="tab" aria-controls="reading" aria-selected="false">Reading</button>
+                <button class="nav-link" id="ethnicity-tab" data-bs-toggle="tab" data-bs-target="#ethnicity" type="button" role="tab" aria-controls="ethnicity" aria-selected="false">Ethnic group</button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="writing-tab" data-bs-toggle="tab" data-bs-target="#writing" type="button" role="tab" aria-controls="writing" aria-selected="false">Writing</button>
+                <button class="nav-link" id="marital-tab" data-bs-toggle="tab" data-bs-target="#marital" type="button" role="tab" aria-controls="marital" aria-selected="false">Marital status</button>
               </li>
             </ul>
-            
+
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="gender" role="tabpanel" aria-labelledby="gender-tab">
+                <h6 class="mb-4">Distribution by gender:</h6>
+                <div id="genderDonut" data-gender-data="{{ gender_donut_data|safe }}"></div>
+              </div>
+
+
+              <div class="tab-pane fade" id="ethnicity" role="tabpanel" aria-labelledby="ethnicity-tab">
+                <h6 class="mb-4">Distribution by ethnic group:</h6>
+                <div id="ethnicityDonut" data-ethnicity-data="{{ ethnicity_donut_data|safe }}"></div>
+              </div>
+
+
+              <div class="tab-pane fade" id="marital" role="tabpanel" aria-labelledby="marital-tab">
+                <h6 class="mb-4">Distribution by marital status:</h6>
+                <div id="maritalDonut" data-marital-data="{{ marital_donut_data|safe }}"></div>
+              </div>
+            </div>
             
           </div><!-- card-body -->
         </div><!-- card-one -->
-
-
       </div><!-- col -->
 
       <div class="d-md-flex align-items-center justify-content-between mt-5 mb-4">
         <div>
-          <h4 id="economic-wellbeing" class="main-title mb-0">{{ household.int_begt}}</h4>
+          <h4 id="economic-wellbeing" class="main-title fs-5 mb-0">Child Education (6-17 y.o.)</h4>
+        </div>
+      </div>
+
+      <!-- Children stats by enrollment -->
+      <div class="col-xl-4 col-md-6">
+        <div class="card card-one">
+          <div class="card-header">
+            <h6 class="card-title">Children enrollment statistics</h6>
+            <nav class="nav nav-icon nav-icon-sm ms-auto">
+              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+            </nav>
+          </div><!-- card-header -->
+
+          <div class="card-body p-3">
+            <div id="enrollmentChartPie" data-enrollment-data="{{ enrollment_pie_data|safe }}"></div>
+            
+            <h6 class="mb-4">Reasons of unenrollment (%):</h6>
+
+            <div class="chart-bar-one"><canvas id="unenrollmentReasons" data-unenrollment-reasons="{{ unenrollment_reason_data|safe }}" height="190"></canvas></div>
+
+          </div><!-- card-body -->
+        </div><!-- card -->
+      </div><!--- col -->
+
+
+      <!-- Children stats by education level -->
+      <div class="col-xl-4 col-md-6">
+        <div class="card card-one">
+          <div class="card-header">
+            <h6 class="card-title">Children languages & education levels</h6>
+            <nav class="nav nav-icon nav-icon-sm ms-auto">
+              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+            </nav>
+          </div><!-- card-header -->
+
+          <div class="card-body p-3">
+            <div id="languagesChartPie" data-languages-data="{{ languages_pie_data|safe }}"></div>
+            
+            <h6 class="mb-4">Children education levels:</h6>
+
+            {% for educ_level, data in children_educ_data.items %}
+              <div class="revenue-item">
+                <div class="revenue-item-body">
+                  <span>{{ educ_level|title }}</span>
+                  <span>{{ data.count }}</span>
+                  <span class="text-success">{{ data.percentage|floatformat:1 }}%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" style="width: {{data.percentage|floatformat:0}}%;" role="progressbar" aria-valuenow="{{data.percentage|floatformat:1}}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div><!-- progress -->
+              </div>
+            {% endfor %}
+
+          </div><!-- card-body -->
+
+        </div><!-- card -->
+      </div><!--- col -->
+
+
+      <!-- Children expenditures -->
+      <div class="col-md-6 col-xl-4">
+        <div class="card card-one">
+          <div class="card-header">
+            <h6 class="card-title">Households expenses for child's education</h6>
+            <nav class="nav nav-icon nav-icon-sm ms-auto">
+              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+            </nav>
+          </div><!-- card-header -->
+          <div class="card-body">
+            <div class="position-absolute p-1">
+              <label class="fw-medium fs-sm mb-1">Total Expenses (2018-2019)</label>
+              <h3 class="card-value">{{ total_expenditure|intcomma }}<span class="text-secondary">KGS</span></h3>
+            </div>
+            <div id="apexChart6" class="apex-chart-ten mb-4"></div>
+
+            <ul class="list-group list-group-one">
+              {% for expense_name, expense_amount in education_expenses.items %}
+              <li class="list-group-item px-0 py-20 d-flex align-items-center gap-2">
+                <div>
+                  <h6 class="mb-0">{{ expense_name }}</h6>
+                </div>
+                <div class="ms-auto text-end">
+                  <h6 class="ff-numerals mb-0">{{ expense_amount|intcomma }} KGS</h6>
+                </div>
+              </li>
+            {% endfor %}
+
+            </ul>
+          </div><!-- card-body -->
+        </div><!-- card -->
+      </div><!-- col -->
+
+      <div class="d-md-flex align-items-center justify-content-between mt-5 mb-4">
+        <div>
+          <h4 id="economic-wellbeing" class="main-title fs-5 mb-0">Child Health</h4>
+        </div>
+      </div>
+
+      <!-- Children 0-12 vaccination details -->
+      <div class="col-xl-5">
+        <div class="card card-one">
+          <div class="card-header">
+            <h6 class="card-title">Children vaccination statistics (0-12 y.o.)</h6>
+            <nav class="nav nav-icon nav-icon-sm ms-auto">
+              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+            </nav>
+          </div><!-- card-header -->
+          <div class="card-body pt-0">
+            <div class="table-responsive">
+              <table class="table table-one">
+                <thead>
+                  <tr>
+                    <th>Vaccination</th>
+                    <th>Yes</th>
+                    <th>No</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for field, stats in health_stats.items %}
+                    <tr>
+                      <td><div class="d-flex align-items-center fw-medium"> {{ stats.display_name }}</div></td>
+                      <td>
+                        <!-- Yes -->
+                        <div class="ms-auto text-end">
+                          <h6 class="ff-numerals mb-0">{{ stats.yes_count|intcomma }}</h6>
+                          <small class="text-secondary">{{ stats.yes_percentage|floatformat:1 }}%</small>
+                        </div>
+                      </td>
+                      <td>
+                        <!-- No -->
+                        <div class="ms-auto text-end">
+                          <h6 class="ff-numerals mb-0">{{ stats.no_count|intcomma }}</h6>
+                          <small class="text-secondary">{{ stats.no_percentage|floatformat:1 }}%</small>
+                        </div>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div><!-- table-responsive -->
+          </div><!-- card-body -->
+        </div><!-- card -->
+      </div><!-- col -->
+
+      <!-- Children 0-17 years old health conditions -->
+      <div class="col-xl-7">
+        <div class="card card-one">
+          <div class="card-header">
+            <h6 class="card-title">Children health statistics (0-17 y.o.)</h6>
+            <nav class="nav nav-icon nav-icon-sm ms-auto">
+              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+            </nav>
+          </div><!-- card-header -->
+          <div class="card-body p-3 p-xl-4">
+            <div class="row g-3">
+              <div class="col">
+                <div class="earning-item">
+                  <div id="certificateDonut" data-certificate-data="{{ certificate_donut_data|safe }}"></div>
+                  <label>Children having birth certificate</label>
+                </div><!-- earning-item -->
+              </div><!-- col -->
+              <div class="col">
+                <div class="earning-item">
+                  <div id="disabilityDonut" data-disability-data="{{ disability_donut_data|safe }}"></div>
+                  <label>Having disability or long term limiting illness</label>
+                </div><!-- earning-item -->
+              </div><!-- col -->
+            
+            </div><!-- row -->
+
+          </div><!-- card-body -->
+        </div><!-- card -->
+      </div><!-- col -->
+
+
+      <div class="d-md-flex align-items-center justify-content-between mt-5 mb-4">
+        <div>
+          <h4 id="economic-wellbeing" class="main-title mb-0">{{ household.inter }}</h4>
         </div>
 
       </div>
@@ -161,6 +339,7 @@
 
    
   </div><!-- main -->
+  
 
 
 {% endblock content %}
