@@ -281,6 +281,25 @@ def economic_wellbeing(request):
 
     context['empty_cells_count'] = empty_cells_count
     context['empty_cells_percentage'] = round(empty_cells_percentage, 2)
+    
+    ########################### HOUSEHOLD rooms CALCULATION ###########################################################
+    # Retrieve data from the HouseholdProperty model
+    properties = HouseholdProperty.objects.all()
+    
+    # Calculate average area
+    total_area_sum = sum(property.total_area or 0 for property in properties)
+    total_properties = len(properties)
+    average_area = total_area_sum / total_properties if total_properties > 0 else 0
+    
+
+    # Pass the data to the template
+    context['average_area'] = round(average_area, 2)
+   
+   ########################### HOUSEHOLD SETTLEMENT YEAR CALCULATION ###########################################################
+   
+   
+    
+    
 
     return render(request, "pages/2 - economic-wellbeing/economic-wellbeing.html", context)
 
