@@ -76,7 +76,7 @@
       <div class="col-sm-6 col-xl">
         <div class="card card-one">
           <div class="card-header">
-            <h6 class="card-title">Overall Rating</h6>
+            <h6 class="card-title">Year of Settlement</h6>
             <nav class="nav nav-icon nav-icon-sm ms-auto">
               <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
               <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
@@ -84,88 +84,62 @@
           </div><!-- card-header -->
           <div class="card-body">
             <div class="d-flex align-items-baseline gap-2 mb-0">
-              <h1 class="card-value mb-0">4.8</h1>
-              <div class="d-flex gap-1 text-warning fs-20">
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-half-fill"></i>
-              </div>
+              <h1 class="card-value mb-0">{{ total_count }}</h1>
+              
             </div>
-            <p class="fs-sm">Measures the quality or your support team’s efforts.</p>
+            <p class="fs-sm">The following table represents the year of settlement:</p>
 
             <table class="table table-ratings mb-0">
               <tbody>
                 <tr>
-                  <td><strong>5.0</strong></td>
+                  <td><strong>Before 1990</strong></td>
                   <td>
-                    <div class="d-flex gap-1 text-warning fs-16">
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                    </div>
+                    <div class="progress flex-fill ht-5">
+                      <div class="progress-bar bg-warning" role="progressbar" style="width: {{ before_1990_percentage }}ex;" aria-valuenow="{{ excellent_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>                   
                   </td>
-                  <td>4,230</td>
-                  <td>58%</td>
+                  <td>{{ before_1990_count }}</td>
+                  <td>{{ before_1990_percentage }} %</td>
                 </tr>
                 <tr>
-                  <td><strong>4.0</strong></td>
+                  <td><strong>Between 1990 - 2000</strong></td>
                   <td>
-                    <div class="d-flex gap-1 text-warning fs-16">
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-line"></i>
-                    </div>
+                    <div class="progress flex-fill ht-5">
+                      <div class="progress-bar" role="progressbar" style="width: {{ between_1990_2000_percentage }}ex;" aria-valuenow="{{ between_1990_2000_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>  
                   </td>
-                  <td>1,416</td>
-                  <td>24%</td>
+                  <td>{{ between_1990_2000_count }}</td>
+                  <td>{{ between_1990_2000_percentage }} %</td>
                 </tr>
                 <tr>
-                  <td><strong>3.0</strong></td>
+                  <td><strong>Between 2000 - 2010</strong></td>
                   <td>
-                    <div class="d-flex gap-1 text-warning fs-16">
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-line"></i>
-                      <i class="ri-star-line"></i>
-                    </div>
+                    <div class="progress flex-fill ht-5">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: {{ between_2000_2010_percentage }}ex;" aria-valuenow="{{ between_2000_2010_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>  
                   </td>
-                  <td>980</td>
-                  <td>16%</td>
+                  <td>{{ between_2000_2010_count }}</td>
+                  <td>{{ between_2000_2010_percentage }} %</td>
                 </tr>
                 <tr>
-                  <td><strong>2.0</strong></td>
+                  <td><strong>After 2010</strong></td>
                   <td>
-                    <div class="d-flex gap-1 text-warning fs-16">
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-line"></i>
-                      <i class="ri-star-line"></i>
-                      <i class="ri-star-line"></i>
-                    </div>
+                    <div class="progress flex-fill ht-5">
+                      <div class="progress-bar bg-dark" role="progressbar" style="width: {{ after_2010_percentage }}ex;" aria-valuenow="{{ after_2010_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>  
                   </td>
-                  <td>798</td>
-                  <td>12%</td>
+                  <td>{{ after_2010_count }}</td>
+                  <td>{{ after_2010_percentage }} %</td>
                 </tr>
                 <tr>
-                  <td><strong>1.0</strong></td>
+                  <td><strong>Empty cells</strong></td>
                   <td>
-                    <div class="d-flex gap-1 text-warning fs-16">
-                      <i class="ri-star-fill"></i>
-                      <i class="ri-star-line"></i>
-                      <i class="ri-star-line"></i>
-                      <i class="ri-star-line"></i>
-                      <i class="ri-star-line"></i>
+                    <div class="progress flex-fill ht-5">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: {{ empty_cells_percentage }}ex;" aria-valuenow="{{ empty_cells_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </td>
-                  <td>401</td>
-                  <td>8%</td>
+                  <td>{{ empty_cells_count }}</td>
+                  <td>{{ empty_cells_percentage }} %</td>
                 </tr>
               </tbody>
             </table>

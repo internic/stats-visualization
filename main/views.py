@@ -297,7 +297,44 @@ def economic_wellbeing(request):
    
    ########################### HOUSEHOLD SETTLEMENT YEAR CALCULATION ###########################################################
    
-   
+    # Calculate counts for each category
+    before_1990_count = HouseholdProperty.objects.filter(settlement_year__lt=1990).count()
+    between_1990_2000_count = HouseholdProperty.objects.filter(settlement_year__range=[1990, 2000]).count()
+    between_2000_2010_count = HouseholdProperty.objects.filter(settlement_year__range=[2000, 2010]).count()
+    after_2010_count = HouseholdProperty.objects.filter(settlement_year__gte=2010).count()
+
+    # Calculate the total count
+    total_count = before_1990_count + between_1990_2000_count + between_2000_2010_count + after_2010_count + empty_cells_count
+    
+    # Calculate the empty cells count
+    empty_cells_count = HouseholdProperty.objects.filter(settlement_year__isnull=True).count()
+    
+    
+    # Calculate the percentage for each category
+    before_1990_percentage = (before_1990_count / total_count) * 100 if total_count > 0 else 0
+    between_1990_2000_percentage = (between_1990_2000_count / total_count) * 100 if total_count > 0 else 0
+    between_2000_2010_percentage = (between_2000_2010_count / total_count) * 100 if total_count > 0 else 0
+    after_2010_percentage = (after_2010_count / total_count) * 100 if total_count > 0 else 0
+    empty_cells_percentage = (empty_cells_count / total_count) * 100 if total_count > 0 else 0
+    
+    
+    # Pass the data to the template
+    context['total_count'] = total_count
+    
+    context['before_1990_count'] = before_1990_count
+    context['between_1990_2000_count'] = between_1990_2000_count
+    context['between_2000_2010_count'] = between_2000_2010_count
+    context['after_2010_count'] = after_2010_count
+    context['empty_cells_count'] = empty_cells_count
+    
+    context['before_1990_percentage'] = round(before_1990_percentage, 2)
+    context['between_1990_2000_percentage'] = round(between_1990_2000_percentage, 2)
+    context['between_2000_2010_percentage'] = round(between_2000_2010_percentage, 2)
+    context['after_2010_percentage'] = round(after_2010_percentage, 2)
+    context['empty_cells_percentage'] = round(empty_cells_percentage, 2)
+    
+    
+    ########################### HOUSEHOLD PROPERTY OWNERSHIP CALCULATION ###########################################################
     
     
 
