@@ -3,8 +3,8 @@
         <ol class="breadcrumb fs-sm mb-1">
             <li class="breadcrumb-item"><a href="#">Dataset</a></li>
             <li class="breadcrumb-item active" aria-current="page">
-                {% if request.path == '/household-demographics/' %}
-                    Household 
+                {% if request.path == '/' %}
+                    LiK Household data
                 {% elif request.path == '/savingsAssets/' %}
                     Housing, Assets and Savings
                 {% comment %} {% elif request.path == '/housing-amenities/' %}
@@ -26,8 +26,8 @@
         </ol>
         {% comment %} <h4 class="main-title mb-0">Household Demographics</h4> {% endcomment %}
         <h4 class="main-title mb-0">
-                {% if request.path == '/household-demographics/' %}
-                    Household 
+                {% if request.path == '/' %}
+                    Household Demographics
                 {% elif request.path == '/savingsAssets/' %}
                     Housing, Assets and Savings
                 {% comment %} {% elif request.path == '/housing-amenities/' %}
