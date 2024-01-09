@@ -14,7 +14,7 @@ Before running this project, make sure you have Python installed on your system.
 First, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/your-repository.git
+git clone https://github.com/internic/stats-visualization.git
 cd your-repository
 ```
 
